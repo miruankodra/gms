@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginPageForm } from './login.page.form';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -36,14 +37,33 @@ export class LoginPage implements OnInit {
         email: loginForm.email,
         password: loginForm.password,
       })
-      .subscribe((response:any) => {
-        // console.log(response[0]);
-        const id = response[0];
-
-        if(id != null){
+      .subscribe((response:any) => {      
+        if(response['status'] == 'success'){
           this.router.navigateByUrl('/home');
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully!'
+          })
         }else{
-          alert('Wrong credentials!')
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed!',
+            text: 'Credentials do not match!',
+            // footer: '<a href="">Why do I have this issue?</a>'
+          })
         }
       });
   }

@@ -21,9 +21,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/login', [TemporaryController::class, 'login'])->name('login');
+// Route::post('/login', [TemporaryController::class, 'login'])->name('login');
 
 
 
+
+
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('greenhouse', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('area')->nullable();
             $table->text('location');
             $table->timestamps();

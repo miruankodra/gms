@@ -20,7 +20,7 @@ export class RegisterPageForm {
       country: ['', Validators.required],
       city: ['', Validators.required],
       zip: ['', Validators.required],
-      
+      agreement: ['', Validators.requiredTrue],
     });
   }
 }

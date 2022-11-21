@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('climate', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id')->references('id')->on('greenhouse')->onDelete('cascade');
+            $table->bigInteger('gh_id')->unsigned()->index()->nullable();
+            $table->foreign('gh_id')->references('id')->on('greenhouse')->onDelete('cascade');
             $table->boolean('temp');
             $table->boolean('air_humid');
             $table->boolean('soil_humid');
