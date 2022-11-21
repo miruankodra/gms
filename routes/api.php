@@ -21,9 +21,9 @@ use App\Http\Controllers\Authentication\RegisterController;
 // Route::post('/login', [TemporaryController::class, 'login']);
 
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 Route::post('/user/login', [LoginController::class, 'login'])->withoutMiddleware(VerifyCsrfToken::class);
 
