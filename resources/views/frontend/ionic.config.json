@@ -1,0 +1,7 @@
+{
+  "name": "gms-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
