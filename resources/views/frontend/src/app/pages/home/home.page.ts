@@ -49,7 +49,16 @@ export class HomePage {
   public airHumidity: Partial<ChartOptions>;
   public areaOptions: Partial<ChartOptions>;
   public soilHumidity: Partial<ChartOptions>;
+  greenhouse: Array<any>;
   token: string;
+  user_id: any;
+  g_name: string;
+  g_location: string;
+  g_area: any;
+  g_owner: string;
+  user: Array<any>;
+  username: string;
+  
 
 
 
@@ -74,19 +83,31 @@ export class HomePage {
 
     this.activatedRoute.queryParams
       .subscribe(params => {
-        console.log(params); // { order: "popular" }
+        console.log(params); 
 
-        this.token = params.api_token;
-        console.log(this.token); // popular
+        this.user = JSON.parse(params.user);
+    
+        this.username = this.user['username'];
+        
       })
 
 
       this.http.post('http://127.0.0.1:8000/api/dashboard', {
-        api_token: this.token,
+        api_token: this.user['api_token'],
+        user_id: this.user['id'],
     })
     .subscribe((response:any) => {   
-      console.log(response);
+      // console.log(response);
+      this.greenhouse = response['greenhouse'];
+      console.log(this.greenhouse);
+
+      this.g_name = this.greenhouse['name'];
+      this.g_area = this.greenhouse['area'];
+      this.g_location = this.greenhouse['location'];
+      
+      
       })
+      
   }
 
   

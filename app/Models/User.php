@@ -54,7 +54,7 @@ class User extends Authenticatable
 
 
 
-    public function greenhouses(){
+    public function greenhouse(){
         return $this->hasMany(Greenhouse::class);
     }
 }

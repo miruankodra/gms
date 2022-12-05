@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Greenhouse extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'user_id',
+        'area',
+        'location',       
+    ];
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

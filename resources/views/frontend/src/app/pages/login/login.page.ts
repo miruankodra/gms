@@ -18,6 +18,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
+  user: string
 
 
 
@@ -38,11 +39,13 @@ export class LoginPage implements OnInit {
         password: loginForm.password,
       })
       .subscribe((response:any) => {      
+       
         if(response['status'] == 'success'){
           
-          console.log(response['api_token']);
+          this.user = JSON.stringify(response['user'])
+          console.log(this.user);
           
-          this.router.navigate(['/home'] , {queryParams:{api_token:response['api_token'],}});
+          this.router.navigate(['/home'] , {queryParams:{user:this.user}});
           // , {queryParams:{user:response['data']}}
           
           const Toast = Swal.mixin({
