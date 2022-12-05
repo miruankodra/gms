@@ -46,10 +46,10 @@ class RegisterController extends Controller
 
     // }
 
-    // private $apiToken;
+   public $apiToken;
    public function __construct()
     {
-    // $this->apiToken = uniqid(base64_encode(Str::random(40)));
+    $this->apiToken = uniqid(base64_encode(Str::random(40)));
     }
   /** 
    * Register API 
@@ -70,14 +70,28 @@ class RegisterController extends Controller
     // }
     $postArray = $request->all(); 
    
-    $postArray['password'] = Hash::make($request['password']); 
-    $user = User::create($postArray); 
+   
+    // $user = User::create($postArray); 
+    $user = User::create([
+        'firstname'=>$postArray['firstname'],
+        'lastname'=>$postArray['lastname'],
+        'username'=>$postArray['username'],
+        'email'=>$postArray['email'],
+        'password'=> Hash::make($postArray['password']),
+        'phone'=>$postArray['phone'],
+        'country'=>$postArray['country'],
+        'city'=>$postArray['city'],
+        'address'=>$postArray['address'],
+        'zip'=>$postArray['zip'],
+        'api_token' => $this->apiToken,
+    ]);
     
-    // $success['token'] = $this->apiToken;  
+    $success['token'] = $user->api_token; 
     $success['name'] =  $user->username;
     return response()->json([
       'status' => 'success',
-      'data' => $success,
+      'data' => $success['token'],
+      'user' => $success['name']
     ]); 
   }
 }

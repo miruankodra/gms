@@ -30,10 +30,11 @@ class LoginController extends Controller
           $user = Auth::user(); 
         //Setting login response 
         // $success['token'] = $this->apiToken;
-        $success['name'] =  $user->username;
+        // $success['name'] =  $user;
           return response()->json([
             'status' => 'success',
-            'data' => $success
+            'api_token' => $user->api_token,
+            'user' => $user->username
           ]); 
         } else { 
           return response()->json([

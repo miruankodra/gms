@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import {
   FormBuilder,
@@ -39,7 +39,12 @@ export class LoginPage implements OnInit {
       })
       .subscribe((response:any) => {      
         if(response['status'] == 'success'){
-          this.router.navigateByUrl('/home');
+          
+          console.log(response['api_token']);
+          
+          this.router.navigate(['/home'] , {queryParams:{api_token:response['api_token'],}});
+          // , {queryParams:{user:response['data']}}
+          
           const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -62,6 +67,7 @@ export class LoginPage implements OnInit {
             icon: 'error',
             title: 'Login Failed!',
             text: 'Credentials do not match!',
+            heightAuto: false,
             // footer: '<a href="">Why do I have this issue?</a>'
           })
         }

@@ -77,6 +77,7 @@ export class RegisterPage implements OnInit {
         icon: 'error',
         title: 'Passwords do not match!',
         text: 'Check your password confiramtion',
+        heightAuto: false,
         // footer: '<a href="">Why do I have this issue?</a>'
       })
     }

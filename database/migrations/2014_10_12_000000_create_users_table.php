@@ -21,13 +21,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('api_token', 80)->unique();                        
             $table->string('phone');
             $table->string('country');
             $table->string('city');
             $table->string('address');
             $table->string('zip');
             $table->boolean('active')->default(0);
-
             $table->rememberToken();
             $table->timestamps();
         });
