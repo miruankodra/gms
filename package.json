@@ -17,6 +17,7 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
+        "@syncfusion/ej2-base": "^20.3.56",
         "bootstrap": "^5.2.2",
         "jquery": "^3.6.1",
         "sweetalert2": "^11.6.10"

@@ -20,4 +20,9 @@ class Greenhouse extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+
+    public function statistic(){
+        return $this->hasMany(Statistic::class);
+    }
 }

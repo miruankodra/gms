@@ -58,6 +58,8 @@ export class HomePage {
   g_owner: string;
   user: Array<any>;
   username: string;
+  temp: Array<any>;
+  day: Array<any>;
   
 
 
@@ -104,9 +106,15 @@ export class HomePage {
       this.g_name = this.greenhouse['name'];
       this.g_area = this.greenhouse['area'];
       this.g_location = this.greenhouse['location'];
+
+      this.temp = response['temp'];
+      this.day = response['day'];
       
       
       })
+
+
+
       
   }
 
@@ -121,24 +129,16 @@ export class HomePage {
           enabled: true,
         },
       },
-      series: [
-        {
-          name: 'Sales',
-          data: [
-            {x:1,y:1},
-            {x:2,y:2},
-            {x:3,y:3},
-            {x:4,y:4},
-            {x:5,y:5},
-            {x:6,y:6},
-            {x:7,y:7},
-            {x:8,y:8},
-            {x:9,y:9},
-            {x:10,y:10},
-            {x:11,y:11},
-          ],
-        },
-      ],
+      series: [{
+        data:[this.temp],
+        
+    }],
+      xaxis:{
+        categories:this.day,
+      },
+      // yaxis: {
+      //   categories: this.temp,
+      // },
       stroke: {
         width: 2,
         colors: ['#ffd3a5'],
