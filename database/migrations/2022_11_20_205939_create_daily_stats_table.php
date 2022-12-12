@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('daily_stats', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id')->references('id')->on('greenhouse')->onDelete('cascade');
+            $table->bigInteger('gh_id')->unsigned()->index()->nullable();
+            $table->foreign('gh_id')->references('id')->on('greenhouse')->onDelete('cascade');
             $table->double('temp_avg');
             $table->double('air_humid_avg');
             $table->double('soil_hummid_avg');

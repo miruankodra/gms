@@ -74,12 +74,18 @@
           <ion-label position="floating">Zip Code</ion-label>
           <ion-input type="number" id="zip" formControlName="zip"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-checkbox slot="start" formControlName="agreement"></ion-checkbox>
+          <ion-label>I agree to the terms and conditions stated by the distributor</ion-label>
+        </ion-item>
 
       </ion-card-content>
 
-      <ion-button size="full" color="success" (click)="register(registerForm.value)" [disabled]="!registerForm.valid">Register</ion-button>
+      <ion-button size="full" color="success" (click)="register(registerForm.value)" [disabled]="!registerForm.valid" style="margin-top: 10px;">Register</ion-button>
 
     </ion-card>
   </form>
+
+  
   
 </ion-content>

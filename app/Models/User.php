@@ -24,11 +24,13 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'api_token',
         'phone',
         'country',
         'city',
         'address',
-        'zip'
+        'zip',
+        
     ];
 
     /**
@@ -49,4 +51,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function greenhouse(){
+        return $this->hasMany(Greenhouse::class);
+    }
 }

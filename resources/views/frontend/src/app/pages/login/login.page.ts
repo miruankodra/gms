@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import {
   FormBuilder,
@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginPageForm } from './login.page.form';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { LoginPageForm } from './login.page.form';
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
+  user: string
 
 
 
@@ -36,14 +38,41 @@ export class LoginPage implements OnInit {
         email: loginForm.email,
         password: loginForm.password,
       })
-      .subscribe((response:any) => {
-        // console.log(response[0]);
-        const id = response[0];
-
-        if(id != null){
-          this.router.navigateByUrl('/home');
+      .subscribe((response:any) => {      
+       
+        if(response['status'] == 'success'){
+          
+          this.user = JSON.stringify(response['user'])
+          console.log(this.user);
+          
+          this.router.navigate(['/home'] , {queryParams:{user:this.user}});
+          // , {queryParams:{user:response['data']}}
+          
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully!'
+          })
         }else{
-          alert('Wrong credentials!')
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed!',
+            text: 'Credentials do not match!',
+            heightAuto: false,
+            // footer: '<a href="">Why do I have this issue?</a>'
+          })
         }
       });
   }
