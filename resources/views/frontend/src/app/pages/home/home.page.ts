@@ -18,6 +18,7 @@ import {
   ApexYAxis,
 } from 'ng-apexcharts';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { ChartModule } from '@syncfusion/ej2-angular-charts';
 
 
 export type ChartOptions = {

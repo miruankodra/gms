@@ -25,6 +25,8 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "@syncfusion/ej2-angular-charts": "^20.3.60",
+    "@syncfusion/ej2-angular-grids": "^20.3.60",
     "@syncfusion/ej2-base": "^20.3.56",
     "apexcharts": "^3.36.3",
     "ionicons": "^6.0.3",
