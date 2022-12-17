@@ -29,9 +29,11 @@
     "@syncfusion/ej2-angular-grids": "^20.3.60",
     "@syncfusion/ej2-base": "^20.3.56",
     "apexcharts": "^3.36.3",
+    "canvasjs": "^1.8.3",
     "ionicons": "^6.0.3",
     "ng-apexcharts": "^1.7.4",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.6.15",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

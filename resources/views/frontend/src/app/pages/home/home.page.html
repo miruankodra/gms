@@ -39,17 +39,23 @@
         <ion-icon name="location-outline" slot="start" color="danger"></ion-icon>
         <ion-label>Location: {{ g_location }} </ion-label>
       </ion-item>
-      
+
     </ion-card-content>
 
   </ion-card>
-  
-  
+
+
   <ion-card>
     <ion-card-header>
       <ion-card-title color="success"><h1>Stats Information</h1></ion-card-title>
-    </ion-card-header>  
-    <ion-card-content>  
+    </ion-card-header>
+    <ion-card-content>
+      <ejs-chart id="chart-container">
+        <e-series-collection>
+          <e-series [dataSource]='data' type='Line' xName='x' yName='y' name='Temp'></e-series>
+        </e-series-collection>
+      </ejs-chart>
+
       <!-- <ejs-chart></ejs-chart> -->
       <!-- <div class="box box1">
         <apx-chart
@@ -64,7 +70,7 @@
           [colors]="areaOptions.colors"
         ></apx-chart>
       </div>
-    
+
       <div class="box box2">
         <apx-chart
           [chart]="airHumidity.chart"
@@ -78,7 +84,7 @@
           [colors]="airHumidity.colors"
         ></apx-chart>
       </div> -->
-    
+
       <!-- <div class="box box3">
         <apx-chart
           [chart]="soilHumidity.chart"
@@ -95,7 +101,7 @@
     </ion-card-content>
   </ion-card>
 
-  
 
-  
+
+
 </ion-content>
