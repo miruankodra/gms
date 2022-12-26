@@ -10,10 +10,9 @@ class Greenhouse extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'user_id',
         'area',
-        'location',       
+        'location',
     ];
 
 
