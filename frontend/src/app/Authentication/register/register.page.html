@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="flex-center">
+    <form [formGroup]="registerForm">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>User Information</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input type="text" id="firstname" formControlName="firstname"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input type="text" id="lastname" formControlName="lastname"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input type="text" id="username" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" id="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contact</ion-label>
+          <ion-input type="tel" id="phone" formControlName="phone"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Password</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="Password" id="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="Password" id="confirm" formControlName="confirm"></ion-input>
+        </ion-item>
+
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Address Information</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Address</ion-label>
+          <ion-input type="text" id="address" formControlName="address"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Country</ion-label>
+          <ion-input type="text" id="country" formControlName="country"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">City</ion-label>
+          <ion-input type="text" id="city" formControlName="city"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Zip Code</ion-label>
+          <ion-input type="number" id="zip" formControlName="zip"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox slot="start" formControlName="agreement"></ion-checkbox>
+          <ion-label>I agree to the terms and conditions stated by the distributor</ion-label>
+        </ion-item>
+
+      </ion-card-content>
+
+      <ion-button size="full" color="success" (click)="register(registerForm.value)" [disabled]="!registerForm.valid" style="margin-top: 10px;">Register</ion-button>
+
+    </ion-card>
+  </form>
+  </div>
+</ion-content>
