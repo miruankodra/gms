@@ -25,8 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/user/login', [LoginController::class, 'login'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('/user/login', [LoginController::class, 'login'])->withoutMiddleware(VerifyCsrfToken::class)->name('user.login');
 
-Route::post('/user/register', [RegisterController::class, 'store'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('/user/register', [RegisterController::class, 'store'])->withoutMiddleware(VerifyCsrfToken::class)->name('user.register');
 
-Route::post('/dashboard', [DashboardController::class, 'index'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::get('/user/{id}', [DashboardController::class, 'getUserInfo'])->withoutMiddleware(VerifyCsrfToken::class);
+
+Route::get('/users', [DashboardController::class, 'getUsers'])->withoutMiddleware(VerifyCsrfToken::class);
+
+Route::get('/greenhouse/{id}', [DashboardController::class, 'getGreenhouseInfo'])->withoutMiddleware(VerifyCsrfToken::class);
+
+
+Route::post('/dashboard', [DashboardController::class, 'index'])->withoutMiddleware(VerifyCsrfToken::class)->name('user.register');

@@ -10,18 +10,30 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        
+
+    }
+
+
+    public function getUserInfo($id){
+        $user = User::find($id);
+        return response()->json($user);
+
+    }
+
+    public function getGreenhouseInfo($id){
+        $greenhouse = Greenhouse::where('user_id', '=', $id);
+        return response()->json($greenhouse);
     }
 
 
     public function index(Request $request){
         $data = $request->all();
-        $api_token = $data['api_token'];
-        $id = (int)$data['user_id'];
-        
+//        $api_token = $data['api_token'];
+        $id = (int)$data['userId'];
 
-        $user = User::where('api_token', $api_token)->get();
-        
+
+        $user = User::where('id','=', $id);
+
         $gh = User::find($id)->greenhouse->first();
 
         $stats = Greenhouse::find((int)$gh->id)->statistic;
@@ -34,15 +46,23 @@ class DashboardController extends Controller
             $temp[$i]= $stat->temp_avg;
             $a_humid[$i] = $stat->air_humid_avg;
             $s_humid[$i] = $stat->soil_humid_avg;
-            $day[$i] = $stat->created_at; 
+            $day[$i] = $stat->created_at;
         }
 
         if($user || $user != " ")
-            
+
             return response()->json(['status'=>'success', 'greenhouse'=>$gh, 'temp'=>$temp, 'air'=>$a_humid, 'soil'=>$s_humid, 'day'=>$day]);
             // 'user'=>$user,
         else
             return response()->json(['status'=>'error']);
 
     }
+
+    public function getUsers(){
+        $users = User::all();
+
+        return response()->json($users);
+    }
+
+
 }

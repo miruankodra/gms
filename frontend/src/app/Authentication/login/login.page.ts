@@ -41,14 +41,14 @@ export class LoginPage implements OnInit {
         email: loginForm.email,
         password: loginForm.password,
       })
-      .subscribe((response:any) => {
+      .subscribe((response: any) => {
 
-        if(response['status'] == 'success'){
+        if(response.status === 'success'){
 
-          this.user = JSON.stringify(response['user'])
-          console.log(this.user);
 
-          this.router.navigate(['/home'] , {queryParams:{user:this.user}});
+          // console.log(response.user.id);
+
+          this.router.navigate(['home'] , {queryParams:{userId:response.user.id}});
           // , {queryParams:{user:response['data']}}
 
           const Toast = Swal.mixin({
@@ -61,12 +61,12 @@ export class LoginPage implements OnInit {
               toast.addEventListener('mouseenter', Swal.stopTimer)
               toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
-          })
+          });
 
           Toast.fire({
             icon: 'success',
             title: 'Signed in successfully!'
-          })
+          });
         }else{
 
           Swal.fire({
@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
             text: 'Credentials do not match!',
             heightAuto: false,
             // footer: '<a href="">Why do I have this issue?</a>'
-          })
+          });
         }
       });
   }

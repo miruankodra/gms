@@ -18,7 +18,7 @@ use App\Http\Middleware\VerifyCsrfToken;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
 // Route::post('/login', [TemporaryController::class, 'login'])->name('login');

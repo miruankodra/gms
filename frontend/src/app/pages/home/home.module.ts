@@ -6,7 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import {ChartModule} from "@syncfusion/ej2-angular-charts";
+import {ChartModule} from '@syncfusion/ej2-angular-charts';
 
 @NgModule({
     imports: [

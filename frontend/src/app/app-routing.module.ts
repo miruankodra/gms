@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+    loadChildren: () => import('./Authentication/login/login.module').then(m => m.LoginPageModule)
   },
 
 
