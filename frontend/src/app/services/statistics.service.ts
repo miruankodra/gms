@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Statistic} from '../models/Statistic';
 import {ApiService} from './api.service';
-import {Greenhouse} from '../models/Greenhouse';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GreenhouseService {
+export class StatisticsService {
 
-  constructor(public http: HttpClient, public ApiService: ApiService) { }
+  constructor(private ApiService: ApiService) { }
 
-  async find(id, endpoint): Promise<Greenhouse[]> {
+  async find(id, endpoint): Promise<Statistic[]> {
     let response = await this.ApiService.CallApi('get', `${endpoint}/${id}`);
     if (response !== false){
       return response.data;
@@ -18,8 +17,4 @@ export class GreenhouseService {
       return [];
     }
   }
-
-
-
-
 }

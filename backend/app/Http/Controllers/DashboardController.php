@@ -16,20 +16,44 @@ class DashboardController extends Controller
 
     public function getUserInfo($id){
         $user = User::find($id);
-        return response()->json($user);
+        $response  = [
+            'success' => true,
+            'data' => $user,
+            'message' => null,
+            'error' => null,
+        ];
+
+        return response()->json($response);
 
     }
 
     public function getGreenhouseInfo($id){
-        $greenhouse = Greenhouse::where('user_id', '=', $id);
-        return response()->json($greenhouse);
+        $greenhouse = Greenhouse::where('user_id', '=', $id)->first();
+        $response  = [
+            'success' => true,
+            'data' => $greenhouse,
+            'message' => null,
+            'error' => null,
+        ];
+        return response()->json($response);
+    }
+
+    public function getGreenhouseStatistics($id){
+        $statistics = Greenhouse::find((int)$id)->statistic;
+        $response  = [
+            'success' => true,
+            'data' => $statistics,
+            'message' => null,
+            'error' => null,
+        ];
+        return response()->json($response);
     }
 
 
     public function index(Request $request){
         $data = $request->all();
 //        $api_token = $data['api_token'];
-        $id = (int)$data['userId'];
+        $id = (int)$data['userIphpd'];
 
 
         $user = User::where('id','=', $id);

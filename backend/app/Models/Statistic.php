@@ -10,7 +10,7 @@ class Statistic extends Model
     use HasFactory;
 
     protected $fillable = [
-        'gh_id',
+        'greenhouse_id',
         'temp_avg',
         'air_humid_avg',
         'soil_humid_avg',

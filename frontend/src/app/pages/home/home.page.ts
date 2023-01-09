@@ -1,115 +1,79 @@
- import { Component } from '@angular/core';
- import { Route, ActivatedRoute } from '@angular/router';
- import { map } from 'rxjs/operators';
- import { Observable, observable } from 'rxjs';
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexDataLabels,
-  ApexFill,
-  ApexGrid,
-  ApexLegend,
-  ApexMarkers,
-  ApexPlotOptions,
-  ApexStroke,
-  ApexTitleSubtitle,
-  ApexTooltip,
-  ApexXAxis,
-  ApexYAxis,
-} from 'ng-apexcharts';
-import { ChartModule } from '@syncfusion/ej2-angular-charts';
+import {Component, OnInit} from '@angular/core';
+import { Route, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
- import {UserService} from "../../services/user.service";
- import {GreenhouseService} from "../../services/greenhouse.service";
+import {UserService} from '../../services/user.service';
+import {User} from '../../models/User';
+import {Greenhouse} from '../../models/Greenhouse';
+import {GreenhouseService} from '../../services/greenhouse.service';
+import {StatisticsService} from '../../services/statistics.service';
+import {Statistic} from '../../models/Statistic';
 
 
-
-export type ChartOptions = {
-  chart: ApexChart;
-  series: ApexAxisChartSeries | any[];
-  stroke: ApexStroke;
-  markers: ApexMarkers;
-  grid: ApexGrid;
-  tooltip: ApexTooltip;
-  colors: any[];
-  labels: any[];
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
-  title: ApexTitleSubtitle;
-  subtitle: ApexTitleSubtitle;
-  dataLabels: ApexDataLabels;
-  legend: ApexLegend;
-  fill: ApexFill;
-  plotOptions: ApexPlotOptions;
-};
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  // public options: Partial<ChartOptions>;
-  // public airHumidity: Partial<ChartOptions>;
-  // public areaOptions: Partial<ChartOptions>;
-  // public soilHumidity: Partial<ChartOptions>;
-  public greenhouse: Array<any>;
-  public token: string;
+export class HomePage implements OnInit{
   public userId: any;
-  public user: Array<any>;
-  public username: any;
-  public name: any;
-  public location: any;
-  public area: any;
-
-
-
-
-  // type = 'bar';
-  // options = {
-  //   responsive: true,
-  //   maintainAspectRatio: true,
-  //   scales: {
-  //     yAxes : [{
-  //       ticks : {
-  //         max : 100,
-  //         min : 0
-  //       }
-  //     }]
-  //   }
-  // };
-
-
+  public user: User[] = [];
+  public greenhouse: Greenhouse[] = [];
+  public statistic: Statistic[] = [];
 
   constructor(
     public activatedRoute: ActivatedRoute,
     public http: HttpClient,
     public account: UserService,
     public gh: GreenhouseService,
+    public stats: StatisticsService,
   ) {}
 
 
   ngOnInit(){
+
+  this.activatedRoute.queryParams
+    .subscribe(params => {
+      // console.log(params);
+      this.userId = params.userId;
+    });
+
+    this.loadUser();
+    this.loadGreenhouse();
+    this.loadGreenhouseStatistics();
+
+
   }
 
-  ngAfterViewInit(){
-    this.activatedRoute.queryParams
-      .subscribe(params => {
-        // console.log(params);
-        this.userId = params.userId;
-      });
-    this.account.find(this.userId, '/user').subscribe(response => {
-      this.user = response;
-      this.username = this.user['username'];
-    });
-
-
-    this.gh.find(this.userId, '/greenhouse').subscribe(response => {
-      console.log(response);
-    });
-
+  async loadUser(){
+    this.user = await this.account.find(this.userId, 'user');
     console.log(this.user);
   }
+
+  async loadGreenhouse(){
+    this.greenhouse = await this.gh.find(this.userId, 'greenhouse');
+    console.log(this.greenhouse);
+  }
+
+  async loadGreenhouseStatistics(){
+    this.statistic = await this.stats.find(1, 'statistics');
+    console.log(this.statistic);
+  }
+
+
+
+    // this.account.find(this.userId, '/user').subscribe(response => {
+    //   this.user = response;
+    //   this.username = this.user['username'];
+    // });
+    //
+    //
+    // this.gh.find(this.userId, '/greenhouse').subscribe(response => {
+    //   console.log(response);
+    // });
+    //
+    // console.log(this.user);
+
 
 
 

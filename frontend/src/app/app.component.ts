@@ -9,9 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public appPages = [
     {title: 'Dashboard', url:'/home', icon: 'home'},
-    {title: 'Climate', url:'/climate', icon: 'ac_unit'},
+    {title: 'Climate', url:'/climate', icon: 'thermometer'},
     {title: 'Control Panel', url:'/controlpanel', icon: 'build'},
-    {title: 'Modalities', url:'/modalities', icon: 'spa'}
+    {title: 'Modalities', url:'/modalities', icon: 'albums'}
   ];
   constructor() {}
 }
