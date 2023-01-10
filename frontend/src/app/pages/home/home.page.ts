@@ -7,6 +7,8 @@ import {Greenhouse} from '../../models/Greenhouse';
 import {GreenhouseService} from '../../services/greenhouse.service';
 import {StatisticsService} from '../../services/statistics.service';
 import {Statistic} from '../../models/Statistic';
+import { Chart } from '@syncfusion/ej2-angular-charts';
+import {ChartData} from "../../models/chartData";
 
 
 
@@ -20,6 +22,11 @@ export class HomePage implements OnInit{
   public user: User[] = [];
   public greenhouse: Greenhouse[] = [];
   public statistic: Statistic[] = [];
+  public primaryXAxis: Object;
+  public chartData: Object[];
+  public tempData:any = [];
+  public airData:any = [];
+  public soilData:any = [];
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -57,29 +64,16 @@ export class HomePage implements OnInit{
 
   async loadGreenhouseStatistics(){
     this.statistic = await this.stats.find(1, 'statistics');
-    console.log(this.statistic);
+    this.chartData = this.statistic;
+    this.tempData = this.chartData[0];
+    this.airData = this.chartData[1];
+    this.soilData = this.chartData[2];
+
+    // console.log(this.chartData);
+    this.primaryXAxis = {
+      valueType: 'Category'
+    };
   }
-
-
-
-    // this.account.find(this.userId, '/user').subscribe(response => {
-    //   this.user = response;
-    //   this.username = this.user['username'];
-    // });
-    //
-    //
-    // this.gh.find(this.userId, '/greenhouse').subscribe(response => {
-    //   console.log(response);
-    // });
-    //
-    // console.log(this.user);
-
-
-
-
-
-
-
 
 }
 

@@ -40,9 +40,25 @@ class DashboardController extends Controller
 
     public function getGreenhouseStatistics($id){
         $statistics = Greenhouse::find((int)$id)->statistic;
+
+        $tempData = [];
+        $soilData = [];
+        $airData = [];
+        $day = [];
+        foreach($statistics as $i=>$stat){
+            array_push($tempData, ['x' => $stat->created_at, 'y' => $stat->temp_avg]);
+            array_push($airData, ['x' => $stat->created_at, 'y' => $stat->air_humid_avg]);
+            array_push($soilData, ['x' => $stat->created_at, 'y' => $stat->soil_humid_avg]);
+//            [$i] = {x: $stat->created_at, y: $stat->temp_avg};
+            $temp[$i]= $stat->temp_avg;
+            $a_humid[$i] = $stat->air_humid_avg;
+            $s_humid[$i] = $stat->soil_humid_avg;
+            $day[$i] = $stat->created_at;
+        }
+
         $response  = [
             'success' => true,
-            'data' => $statistics,
+            'data' => [$tempData, $airData, $soilData],
             'message' => null,
             'error' => null,
         ];

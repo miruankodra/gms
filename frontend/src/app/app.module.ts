@@ -5,8 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ChartModule,LineSeriesService } from '@syncfusion/ej2-angular-charts';
-
+import { ChartModule   } from '@syncfusion/ej2-angular-charts';
+import { ChartComponent } from '@syncfusion/ej2-angular-charts';
+import { CategoryService, LegendService, TooltipService } from '@syncfusion/ej2-angular-charts';
+import { DataLabelService, LineSeriesService} from '@syncfusion/ej2-angular-charts';
 
 
 @NgModule({
@@ -18,7 +20,7 @@ import { ChartModule,LineSeriesService } from '@syncfusion/ej2-angular-charts';
     HttpClientModule,
     ChartModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy } ,LineSeriesService  ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy } ,CategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
