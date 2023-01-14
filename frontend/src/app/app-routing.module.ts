@@ -19,7 +19,19 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./Authentication/login/login.module').then(m => m.LoginPageModule)
+  },  {
+    path: 'climate',
+    loadChildren: () => import('./pages/climate/climate.module').then( m => m.ClimatePageModule)
   },
+  {
+    path: 'control-panel',
+    loadChildren: () => import('./pages/control-panel/control-panel.module').then( m => m.ControlPanelPageModule)
+  },
+  {
+    path: 'modalities',
+    loadChildren: () => import('./pages/modalities/modalities.module').then( m => m.ModalitiesPageModule)
+  },
+
 
 
   // {

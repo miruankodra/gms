@@ -10,7 +10,7 @@ export class AppComponent {
   public appPages = [
     {title: 'Dashboard', url:'/home', icon: 'home'},
     {title: 'Climate', url:'/climate', icon: 'thermometer'},
-    {title: 'Control Panel', url:'/controlpanel', icon: 'build'},
+    {title: 'Control Panel', url:'/control-panel', icon: 'build'},
     {title: 'Modalities', url:'/modalities', icon: 'albums'}
   ];
   constructor() {}
