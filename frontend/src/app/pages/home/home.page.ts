@@ -9,6 +9,7 @@ import {StatisticsService} from '../../services/statistics.service';
 import {Statistic} from '../../models/Statistic';
 import { Chart } from '@syncfusion/ej2-angular-charts';
 import {ChartData} from "../../models/chartData";
+import {MenuController} from "@ionic/angular";
 
 
 
@@ -34,16 +35,13 @@ export class HomePage implements OnInit{
     public account: UserService,
     public gh: GreenhouseService,
     public stats: StatisticsService,
+    public menuCtrl: MenuController,
   ) {}
 
 
   ngOnInit(){
-
-  this.activatedRoute.queryParams
-    .subscribe(params => {
-      // console.log(params);
-      this.userId = params.userId;
-    });
+    this.menuCtrl.enable(true);
+    this.userId = localStorage.getItem('user_id');
 
     this.loadUser();
     this.loadGreenhouse();

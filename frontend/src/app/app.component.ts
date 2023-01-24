@@ -13,5 +13,6 @@ export class AppComponent {
     {title: 'Control Panel', url:'/control-panel', icon: 'build'},
     {title: 'Modalities', url:'/modalities', icon: 'albums'}
   ];
+  public currentYear: number = new Date().getFullYear();
   constructor() {}
 }

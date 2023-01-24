@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('climate', function (Blueprint $table) {
+        Schema::create('bots', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('gh_id')->unsigned()->index()->nullable();
-            $table->foreign('gh_id')->references('id')->on('greenhouse')->onDelete('cascade');
-            $table->boolean('temp');
-            $table->boolean('air_humid');
-            $table->boolean('soil_humid');
+            $table->bigInteger('greenhouse_id')->unsigned()->index()->nullable();
+            $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
+            $table->string('name', 50);
+            $table->ipAddress('ip_address');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('climate');
+        Schema::dropIfExists('bots');
     }
 };

@@ -18,17 +18,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'greenhouse_id',
         'firstname',
         'lastname',
         'username',
         'email',
         'password',
-        'api_token',
         'phone',
         'country',
         'city',
         'address',
         'zip',
+        'type',
 
     ];
 

@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('modalities', function (Blueprint $table) {
+        Schema::create('daystats', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('greenhouse_id')->unsigned()->index()->nullable();
             $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
-            $table->string('name', 50);
-            $table->string('description', 150)->nullable();
-            $table->float('temperature');
-            $table->float('air_humidity');
-            $table->float('soil_humidity');
-            $table->boolean('enabled')->default(false);
+            $table->double('temp_avg');
+            $table->double('air_humid_avg');
+            $table->double('soil_hummid_avg');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modalities');
+        Schema::dropIfExists('daystats');
     }
 };

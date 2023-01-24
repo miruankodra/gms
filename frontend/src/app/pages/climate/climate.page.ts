@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClimatePage implements OnInit {
 
+  temperature?: number = 25;
+  airHumidity?: number = 50;
+  soilHumidity?: number = 75;
+
   constructor() { }
 
   ngOnInit() {

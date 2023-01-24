@@ -15,19 +15,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('greenhouse_id')->unsigned()->index()->nullable();
+            $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('api_token', 80)->unique();                        
             $table->string('phone');
             $table->string('country');
             $table->string('city');
             $table->string('address');
             $table->string('zip');
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(true);
+            $table->set('type', ['Admin', 'User']);
             $table->rememberToken();
             $table->timestamps();
         });

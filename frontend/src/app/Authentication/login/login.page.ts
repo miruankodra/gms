@@ -11,6 +11,7 @@ import {
 import { LoginPageForm } from './login.page.form';
 import Swal from 'sweetalert2';
 import {MenuController} from '@ionic/angular';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginPage implements OnInit {
     private http: HttpClient,
     private router: Router,
     private formBuilder: FormBuilder,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    public account: UserService,
     ) {}
 
   ngOnInit() {
@@ -44,13 +46,9 @@ export class LoginPage implements OnInit {
       .subscribe((response: any) => {
 
         if(response.status === 'success'){
-
-
-          // console.log(response.user.id);
-
-          this.router.navigate(['home'] , {queryParams:{userId:response.user.id}});
-          // , {queryParams:{user:response['data']}}
-
+          this.account.setCurrerntUserId(response.user.id);
+          this.router.navigate(['home']);
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

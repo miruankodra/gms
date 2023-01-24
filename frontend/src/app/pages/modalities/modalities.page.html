@@ -1,6 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>modalities</ion-title>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Modalities</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,16 +11,16 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title color="success"><h3>title</h3></ion-card-title>
+      <ion-card-title color="success"><h3>Choose Modality</h3></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button>+</ion-button>
+      <ion-button>Add Modality</ion-button>
       <ion-list>
         <ion-item>
-          <ion-select placeholder="Select minjt e mirit">
-            <ion-select-option value="miu1">miu1</ion-select-option>
-            <ion-select-option value="miu2">miu2</ion-select-option>
-            <ion-select-option value="miu3">miu3</ion-select-option>
+          <ion-select placeholder="Select Modality">
+            <ion-select-option value="miu1">Default</ion-select-option>
+            <ion-select-option value="miu2">Spring</ion-select-option>
+            <ion-select-option value="miu3">Winter</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -26,12 +29,25 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title color="success"><h3>title</h3></ion-card-title>
+      <ion-card-title color="success"><h3>Current Modality</h3></ion-card-title>
     </ion-card-header>
-    <h4>Climateh</h4>
-    <h4>Air humidity</h4>
-    <h4>Soil Humidity</h4>
-    <h4>Modalities</h4>
+    <ion-card-content>
+      <ul class="list-unstyled text-white">
+        <li class="d-flex">
+          <h1 class="me-3">Name:</h1><h1>Default</h1>
+        </li>
+        <li class="d-flex">
+          <h1 class="me-3">Temperature:</h1><h1>25°C</h1>
+        </li>
+        <li class="d-flex">
+          <h1 class="me-3">Air humidity:</h1><h1>50%</h1>
+        </li>
+        <li class="d-flex">
+          <h1 class="me-3">Soil Humidity:</h1><h1>80%</h1>
+        </li>
+      </ul>
+    </ion-card-content>
+
   </ion-card>  
 
 </ion-content>

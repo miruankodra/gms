@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('greenhouse', function (Blueprint $table) {
+        Schema::create('greenhouses', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('name', 50)->nullable();
+            $table->string('country', 100)->nullable();
+            $table->string('city', 100)->nullable();
+            $table->set('type', ['Personal', 'Bussiness']);
             $table->integer('area')->nullable();
-            $table->text('location');
+            $table->string('location');
             $table->timestamps();
         });
     }
