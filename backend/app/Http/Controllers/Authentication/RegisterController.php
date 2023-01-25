@@ -42,13 +42,12 @@ class RegisterController extends Controller
         'zip'=>$postArray['zip'],
     ]);
 
-    $success['token'] = $user->api_token;
-    $success['name'] =  $user->username;
+
 
     return response()->json([
-      'status' => 'success',
-      'data' => $success['token'],
-      'user' => $success['name']
+        'success' => true,
+        'data' => $user,
+        'message' => 'User stored successfully!'
     ]);
   }
 }

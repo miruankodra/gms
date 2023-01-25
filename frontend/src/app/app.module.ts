@@ -9,6 +9,7 @@ import { ChartModule   } from '@syncfusion/ej2-angular-charts';
 import { ChartComponent } from '@syncfusion/ej2-angular-charts';
 import { CategoryService, LegendService, TooltipService } from '@syncfusion/ej2-angular-charts';
 import { DataLabelService, LineSeriesService} from '@syncfusion/ej2-angular-charts';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DataLabelService, LineSeriesService} from '@syncfusion/ej2-angular-char
     AppRoutingModule,
     HttpClientModule,
     ChartModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy } ,CategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService  ],
   bootstrap: [AppComponent],

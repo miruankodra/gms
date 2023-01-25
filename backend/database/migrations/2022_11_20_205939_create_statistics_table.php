@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
             $table->double('temp_avg');
             $table->double('air_humid_avg');
-            $table->double('soil_hummid_avg');
+            $table->double('soil_humid_avg');
             $table->timestamps();
         });
     }

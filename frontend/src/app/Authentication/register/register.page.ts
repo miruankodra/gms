@@ -11,6 +11,8 @@ import {
 } from '@angular/forms';
 import { RegisterPageForm } from './register.page.form';
 import {MenuController} from '@ionic/angular';
+import {User} from "../../models/User";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -19,13 +21,15 @@ import {MenuController} from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
+  public body: User[] = [];
 
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private formBuilder: FormBuilder,
-    public  menuCtrl: MenuController
+    public  menuCtrl: MenuController,
+    public auth: AuthService,
   ) { }
 
   ngOnInit() {
@@ -37,44 +41,36 @@ export class RegisterPage implements OnInit {
 
 
 
-  register(registerForm){
+  async register(registerForm){
 
-    if(registerForm.password == registerForm.confirm){
-    this.http
-      .post('http://127.0.0.1:8000/api/user/register', {
-        firstname: registerForm.firstname,
-        lastname: registerForm.lastname,
-        username: registerForm.username,
-        email: registerForm.email,
-        phone: registerForm.phone,
-        password: registerForm.password,
-        address: registerForm.address,
-        country: registerForm.country,
-        city: registerForm.city,
-        zip: registerForm.zip,
-      })
-      .subscribe((response:any) => {
-        console.log(response);
-        if(response['status'] == 'success'){
-          this.router.navigateByUrl('/login');
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
+    let response;
+    this.body = registerForm;
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
 
-          Toast.fire({
-            icon: 'success',
-            title: 'User Stored!'
-          })
-        }
-      });
+
+
+    if(registerForm.password === registerForm.confirm){
+      response = await this.auth.register(this.body);
+
+      if (response.success === true){
+        this.router.navigateByUrl('/login');
+        Toast.fire({
+          icon: 'success',
+          title: response.message,
+        });
+      } else {
+        //..........
+      }
     }else{
       Swal.fire({
         icon: 'error',
@@ -82,7 +78,7 @@ export class RegisterPage implements OnInit {
         text: 'Check your password confiramtion',
         heightAuto: false,
         // footer: '<a href="">Why do I have this issue?</a>'
-      })
+      });
     }
   }
 

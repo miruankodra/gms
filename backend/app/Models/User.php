@@ -52,13 +52,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = [
-        'greenhouse',
-    ];
+//    protected $with = [
+//    ];
 
 
-
-    public function greenhouse(){
-        return $this->hasMany(Greenhouse::class);
-    }
 }

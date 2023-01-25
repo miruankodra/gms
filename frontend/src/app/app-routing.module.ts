@@ -31,6 +31,22 @@ const routes: Routes = [
     path: 'modalities',
     loadChildren: () => import('./pages/modalities/modalities.module').then( m => m.ModalitiesPageModule)
   },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },
+  {
+    path: 'bot-settings',
+    loadChildren: () => import('./pages/bot-settings/bot-settings.module').then( m => m.BotSettingsPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'log',
+    loadChildren: () => import('./pages/log/log.module').then( m => m.LogPageModule)
+  },
 
 
 

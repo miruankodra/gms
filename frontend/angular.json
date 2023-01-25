@@ -32,8 +32,7 @@
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss", "node_modules/bootstrap/dist/css/bootstrap.css"],
             "scripts": [
-              "node_modules/apexcharts/dist/apexcharts.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
+              "node_modules/bootstrap/dist/js/bootstrap.js",
             ],
             "aot": false,
             "vendorChunk": true,

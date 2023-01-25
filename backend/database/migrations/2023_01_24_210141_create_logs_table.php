@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('greenhouse_id')->unsigned()->index()->nullable();
-            $table->foreign('greenhouse_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned()->index()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('action');
