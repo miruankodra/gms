@@ -19,13 +19,18 @@ export class UserService {
 
 
 
-  async find(id, endpoint): Promise<User[]> {
-    const response = await this.ApiService.CallApi('get', `${endpoint}/${id}`);
+  async find(id): Promise<User[]> {
+    const response = await this.ApiService.CallApi('get', `user/${id}`);
     if (response !== false){
       return response.data;
     } else {
       return [];
     }
+  }
+
+  async saveProfile(body?: User[]): Promise<User[]> {
+    let response = await this.ApiService.CallApi('post', 'user/profile/store', body);
+    return response;
   }
 
 

@@ -18,8 +18,9 @@ import {MenuController} from "@ionic/angular";
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
-  public userId: any;
+export class HomePage{
+  public userId = localStorage.getItem('user_id');
+  public greenhouseId = localStorage.getItem('greenhouse_id');
   public user: User[] = [];
   public greenhouse: Greenhouse[] = [];
   public statistic: Statistic[] = [];
@@ -41,7 +42,7 @@ export class HomePage implements OnInit{
 
   ngOnInit(){
     this.menuCtrl.enable(true);
-    this.userId = localStorage.getItem('user_id');
+
 
     this.loadUser();
     this.loadGreenhouse();
@@ -51,13 +52,11 @@ export class HomePage implements OnInit{
   }
 
   async loadUser(){
-    this.user = await this.account.find(this.userId, 'user');
-    console.log(this.user);
+    this.user = await this.account.find(this.userId);
   }
 
   async loadGreenhouse(){
-    this.greenhouse = await this.gh.find(this.userId, 'greenhouse');
-    console.log(this.greenhouse);
+    this.greenhouse = await this.gh.find(this.greenhouseId, 'greenhouse');
   }
 
   async loadGreenhouseStatistics(){

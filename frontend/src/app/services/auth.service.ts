@@ -10,6 +10,11 @@ export class AuthService {
 
   constructor(public apiService: ApiService) { }
 
+  async login(body: {}) {
+    const response = await this.apiService.CallApi('post', 'user/login', body);
+    return response;
+  }
+
   async register(body: User[]) {
     const response = await this.apiService.CallApi('post', 'user/register', body);
     return response;

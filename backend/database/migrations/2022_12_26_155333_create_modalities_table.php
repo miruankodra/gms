@@ -19,9 +19,12 @@ return new class extends Migration
             $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
             $table->string('name', 50);
             $table->string('description', 150)->nullable();
-            $table->float('temperature');
-            $table->float('air_humidity');
-            $table->float('soil_humidity');
+            $table->float('max_temperature');
+            $table->float('min_temperature');
+            $table->float('max_air_humidity');
+            $table->float('min_air_humidity');
+            $table->float('max_soil_humidity');
+            $table->float('min_soil_humidity');
             $table->boolean('enabled')->default(false);
             $table->timestamps();
         });

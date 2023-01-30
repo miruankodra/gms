@@ -28,7 +28,7 @@ class DashboardController extends Controller
     }
 
     public function getGreenhouseInfo($id){
-        $greenhouse = Greenhouse::where('user_id', '=', $id)->first();
+        $greenhouse = Greenhouse::find((int)$id)->first();
         $response  = [
             'success' => true,
             'data' => $greenhouse,
@@ -39,7 +39,7 @@ class DashboardController extends Controller
     }
 
     public function getGreenhouseStatistics($id){
-        $statistics = Greenhouse::find((int)$id)->statistic;
+        $statistics = Greenhouse::find($id)->statistic;
 
         $tempData = [];
         $soilData = [];
@@ -102,6 +102,24 @@ class DashboardController extends Controller
         $users = User::all();
 
         return response()->json($users);
+    }
+
+
+    public function storeProfile(Request $request){
+        $data = $request->all();
+        $id = (int)$request->input('id');
+        $user = User::find($id)->first();
+        $user->fill($request->except(['password']));
+        if ($request->input('password') != null){
+            $user->password = $request->input('password');
+        }
+
+        if ($user->save()){
+            return response()->json('Profile saved!');
+        } else {
+            return response()->json('Could not save profile!');
+        }
+
     }
 
 

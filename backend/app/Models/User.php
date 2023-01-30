@@ -52,8 +52,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-//    protected $with = [
-//    ];
+    protected $appends = [
+        'fullname',
+        'avatar_path',
+    ];
+
+    public function getFullnameAttribute(){
+        return $this->firstname.' '.$this->lastname;
+    }
+
+    public function getAvatarPathAttribute(){
+        return 'https://ui-avatars.com/api/?name='.$this->fullname.'&color=random';
+    }
 
 
 }

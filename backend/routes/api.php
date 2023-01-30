@@ -31,6 +31,8 @@ Route::post('/user/register', [RegisterController::class, 'store'])->withoutMidd
 
 Route::get('/user/{id}', [DashboardController::class, 'getUserInfo'])->withoutMiddleware(VerifyCsrfToken::class);
 
+Route::post('/user/profile/store', [DashboardController::class, 'storeProfile']);
+
 Route::get('/users', [DashboardController::class, 'getUsers'])->withoutMiddleware(VerifyCsrfToken::class);
 
 Route::get('/greenhouse/{id}', [DashboardController::class, 'getGreenhouseInfo'])->withoutMiddleware(VerifyCsrfToken::class);

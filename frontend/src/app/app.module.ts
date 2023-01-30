@@ -10,6 +10,7 @@ import { ChartComponent } from '@syncfusion/ej2-angular-charts';
 import { CategoryService, LegendService, TooltipService } from '@syncfusion/ej2-angular-charts';
 import { DataLabelService, LineSeriesService} from '@syncfusion/ej2-angular-charts';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     HttpClientModule,
     ChartModule,
     NgHttpLoaderModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy } ,CategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService  ],
   bootstrap: [AppComponent],

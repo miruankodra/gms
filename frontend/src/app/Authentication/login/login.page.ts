@@ -12,6 +12,7 @@ import { LoginPageForm } from './login.page.form';
 import Swal from 'sweetalert2';
 import {MenuController} from '@ionic/angular';
 import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     public menuCtrl: MenuController,
     public account: UserService,
+    public auth: AuthService,
     ) {}
 
   ngOnInit() {
@@ -37,45 +39,37 @@ export class LoginPage implements OnInit {
     this.menuCtrl.enable(false);
   }
 
-  login(loginForm) {
-    this.http
-      .post('http://127.0.0.1:8000/api/user/login', {
-        email: loginForm.email,
-        password: loginForm.password,
-      })
-      .subscribe((response: any) => {
+  async login(loginForm) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
 
-        if(response.status === 'success'){
-          this.account.setCurrerntUserId(response.user.id);
-          this.router.navigate(['home']);
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          });
-
-          Toast.fire({
-            icon: 'success',
-            title: 'Signed in successfully!'
-          });
-        }else{
-
-          Swal.fire({
-            icon: 'error',
-            title: 'Login Failed!',
-            text: 'Credentials do not match!',
-            heightAuto: false,
-            // footer: '<a href="">Why do I have this issue?</a>'
-          });
-        }
+    let response = await this.auth.login(loginForm);
+    if(response.success === true){
+      this.account.setCurrerntUserId(response.data.id);
+      localStorage.setItem('greenhouse_id', response.data.greenhouse_id);
+      this.router.navigate(['home']);
+      Toast.fire({
+        icon: 'success',
+        title: response.message
       });
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: response.message,
+        text: 'Credentials do not match!',
+        heightAuto: false,
+        // footer: '<a href="">Why do I have this issue?</a>'
+      });
+    }
   }
 
 
