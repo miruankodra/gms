@@ -13,6 +13,7 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+        <ion-menu-toggle>
         <ion-item routerDirection="root" [routerLink]="['/bot-settings']" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon slot="start" [ios]="'skull-outline'" [md]="'skull-sharp'"></ion-icon>
           <ion-label>Bot Settings</ion-label>
@@ -31,6 +32,7 @@
             <ion-label color="danger">Log Out</ion-label>
           </ion-item>
         </ion-list>
+        </ion-menu-toggle>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
