@@ -1,0 +1,43 @@
+<ion-content>
+  <div class="flex-center h-100">
+    <form [formGroup]="enrollForm">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="success">Welcome to GMS!</ion-card-title>
+          <ion-card-subtitle color="success">Please insert your email!</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input
+                      type="Email"
+                      name="email"
+                      formControlName="email"
+              ></ion-input>
+            </ion-item>
+            <ion-label
+                    color="danger"
+                    *ngIf="!enrollForm.get('email').valid && enrollForm.get('email').touched && enrollForm.get('email')"
+            >* Email is mandatory</ion-label
+            >
+            <!--            <ion-label-->
+            <!--                    color="danger"-->
+            <!--                    *ngIf="enrollForm.get('email').touched && enrollForm.get('email').errors?.email"-->
+            <!--            >* Email is invalid</ion-label>-->
+          </ion-list>
+          <ion-card-subtitle color="success">We will send you a verification code in a moment!</ion-card-subtitle>
+
+          <ion-button
+                  type="submit"
+                  color="success"
+                  size="full"
+                  [disabled]="!enrollForm.valid"
+                  (click)="verifyEmail(enrollForm.value)"
+          >Send Code</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </form>
+  </div>
+</ion-content>

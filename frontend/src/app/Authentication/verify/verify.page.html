@@ -1,0 +1,87 @@
+<ion-content>
+  <div class="flex-center h-100 ion-margin">
+    <form [formGroup]="verifyForm">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="" color="success">A code with 5 digits has been sent to your email</ion-card-title>
+          <ion-card-subtitle color="success">Insert the verification code here</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+
+
+          <ion-list class="ion-padding d-flex">
+            <div class="custom-input mx-1">
+              <ion-item fill="outline">
+                <ion-input
+                        #ftDigit
+                        type="text"
+                        name="ftDigit"
+                        formControlName="ftDigit"
+                        (keypress)="nextDigit(sDigit)"
+                ></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="custom-input mx-1">
+              <ion-item fill="outline">
+                <ion-input
+                        #sDigit
+                        type="text"
+                        name="sDigit"
+                        formControlName="sDigit"
+                        maxlength="1"
+                        (keydown)="nextDigit(tDigit)"
+                ></ion-input>
+              </ion-item>
+            </div>
+            <div class="custom-input mx-1">
+              <ion-item fill="outline">
+                <ion-input
+                        #tDigit
+                        type="text"
+                        name="tDigit"
+                        formControlName="tDigit"
+                        maxlength="1"
+                        (keydown)="nextDigit(frDigit)"
+                ></ion-input>
+              </ion-item>
+            </div>
+            <div class="custom-input mx-1">
+              <ion-item fill="outline">
+                <ion-input
+                        #frDigit
+                        type="text"
+                        name="frDigit"
+                        formControlName="frDigit"
+                        maxlength="1"
+                        (keydown)="nextDigit(fDigit)"
+                ></ion-input>
+              </ion-item>
+            </div>
+            <div class="custom-input mx-1">
+              <ion-item fill="outline">
+                <ion-input
+                        #fDigit
+                        type="text"
+                        name="fDigit"
+                        formControlName="fDigit"
+                        maxlength="1"
+                        (keydown)="nextDigit(fDigit)"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-list>
+          <ion-button
+                  #submit
+                  type="submit"
+                  color="success"
+                  size="full"
+                  [disabled]="!verifyForm.valid"
+                  (click)="sendVerificationCode(verifyForm.value)"
+          >Verify Email</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </form>
+  </div>
+</ion-content>

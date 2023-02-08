@@ -47,6 +47,14 @@ const routes: Routes = [
     path: 'log',
     loadChildren: () => import('./pages/log/log.module').then( m => m.LogPageModule)
   },
+  {
+    path: 'enroll',
+    loadChildren: () => import('./Authentication/enroll/enroll.module').then( m => m.EnrollPageModule)
+  },
+  {
+    path: 'verify',
+    loadChildren: () => import('./Authentication/verify/verify.module').then( m => m.VerifyPageModule)
+  },
 
 
 

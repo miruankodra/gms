@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\TemporaryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Authentication\LoginController;
@@ -25,19 +24,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/user/login', [LoginController::class, 'login'])->withoutMiddleware(VerifyCsrfToken::class)->name('user.login');
-
-Route::post('/user/register', [RegisterController::class, 'store'])->withoutMiddleware(VerifyCsrfToken::class)->name('user.register');
-
-Route::get('/user/{id}', [DashboardController::class, 'getUserInfo'])->withoutMiddleware(VerifyCsrfToken::class);
-
-Route::post('/user/profile/store', [DashboardController::class, 'storeProfile']);
-
-Route::get('/users', [DashboardController::class, 'getUsers'])->withoutMiddleware(VerifyCsrfToken::class);
-
-Route::get('/greenhouse/{id}', [DashboardController::class, 'getGreenhouseInfo'])->withoutMiddleware(VerifyCsrfToken::class);
-
-Route::get('/statistics/{id}', [DashboardController::class, 'getGreenhouseStatistics'])->withoutMiddleware(VerifyCsrfToken::class);
 
 
-Route::post('/dashboard', [DashboardController::class, 'index'])->withoutMiddleware(VerifyCsrfToken::class)->name('user.register');
+
+Route::prefix('v1')->group(function () {
+//  Auth
+    Route::post('/user/login', [LoginController::class, 'login']);
+    Route::post('/enroll', [RegisterController::class, 'sendVerificationEmail']);
+    Route::post('/verify/code', [RegisterController::class, 'verifyCode']);
+    Route::post('/user/register', [RegisterController::class, 'store']);
+//  User Routes
+    Route::get('/user/{id}', [\App\Http\Controllers\Api\AccountController::class, 'getUserInfo']);
+    Route::post('/user/profile/store', [\App\Http\Controllers\Api\AccountController::class, 'storeProfile']);
+    Route::get('/users', [\App\Http\Controllers\Api\AccountController::class, 'getUsers']);
+//  Greenhouse Controller
+    Route::get('/greenhouse/{id}', [\App\Http\Controllers\Api\GreenhouseController::class, 'getGreenhouseInfo']);
+//  Statistics
+    Route::get('/statistics/{id}', [\App\Http\Controllers\Api\StatisticsController::class, 'getStatistics']);
+//  Modalities
+    Route::get('/greenhouse/{id}/modalities', [\App\Http\Controllers\Api\ModalityController::class, 'getModalities']);
+})->withoutMiddleware(VerifyCsrfToken::class);
+
+
+
+//Route::post('/dashboard', [DashboardController::class, 'index'])->withoutMiddleware(VerifyCsrfToken::class)->name('user.register');

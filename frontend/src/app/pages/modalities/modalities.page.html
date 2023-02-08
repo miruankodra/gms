@@ -14,7 +14,7 @@
       <ion-card-title color="success"><h3>Choose Modality</h3></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button>Add Modality</ion-button>
+      <ion-button color="success">Add Modality</ion-button>
       <ion-list>
         <ion-item>
           <ion-select placeholder="Select Modality">
@@ -32,20 +32,28 @@
       <ion-card-title color="success"><h3>Current Modality</h3></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ul class="list-unstyled text-white">
-        <li class="d-flex">
-          <h1 class="me-3">Name:</h1><h1>Default</h1>
-        </li>
-        <li class="d-flex">
-          <h1 class="me-3">Temperature:</h1><h1>25°C</h1>
-        </li>
-        <li class="d-flex">
-          <h1 class="me-3">Air humidity:</h1><h1>50%</h1>
-        </li>
-        <li class="d-flex">
-          <h1 class="me-3">Soil Humidity:</h1><h1>80%</h1>
-        </li>
-      </ul>
+      <ion-grid>
+        <ion-row>
+          <ion-col><h1 class="me-3">Name:</h1></ion-col>
+          <ion-col class="text-start"><h1>Default</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><h1 class="me-3">Description:</h1></ion-col>
+          <ion-col class="text-start"><h1>Default Modality for default crops in the default greenhouse</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><h1 class="me-3">Temperature:</h1></ion-col>
+          <ion-col class="align-baseline"><h1>25°C</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><h1 class="me-3">Air humidity:</h1></ion-col>
+          <ion-col class="text-start"><h1>50%</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><h1 class="me-3">Soil Humidity:</h1></ion-col>
+          <ion-col class="align-baseline"><h1>80%</h1></ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
 
   </ion-card>  

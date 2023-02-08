@@ -62,7 +62,7 @@ class User extends Authenticatable
     }
 
     public function getAvatarPathAttribute(){
-        return 'https://ui-avatars.com/api/?name='.$this->fullname.'&color=random';
+        return 'https://ui-avatars.com/api/?name='.$this->fullname.'&&background=random';
     }
 
 

@@ -21,7 +21,7 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
-  user: string
+  user: string;
 
 
 
@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
 
 
   toRegister(){
-    this.router.navigateByUrl('/register');
+    this.router.navigateByUrl('/enroll');
   }
 
 }

@@ -44,9 +44,8 @@ export class UserProfilePage implements OnInit {
   }
 
   async saveProfile(profileForm){
-    console.log(profileForm);
     let response = await this.acc.saveProfile(profileForm);
-    console.log(response);
+    this.loadUser();
   }
 
   // async loadCountries(){

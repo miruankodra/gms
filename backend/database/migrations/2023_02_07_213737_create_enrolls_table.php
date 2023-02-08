@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('climates', function (Blueprint $table) {
+        Schema::create('enrolls', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('greenhouse_id')->unsigned()->index()->nullable();
-            $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
-            $table->boolean('temp');
-            $table->boolean('air_humid');
-            $table->boolean('soil_humid');
+            $table->string('email')->unique();
+            $table->set('status', ['pending', 'accepted', 'rejected']);
+            $table->string('email_verification_code');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('climate');
+        Schema::dropIfExists('enrolls');
     }
 };

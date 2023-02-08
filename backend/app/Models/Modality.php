@@ -15,9 +15,12 @@ class Modality extends Model
         'greenhouse_id',
         'name',
         'description',
-        'temperature',
-        'air_humidity',
-        'soil_humidity',
+        'max_temperature',
+        'min_temperature',
+        'max_air_humidity',
+        'min_air_humidity',
+        'max_soil_humidity',
+        'min_soil_humidity',
         'enabled',
     ];
 

@@ -17,7 +17,7 @@ class StatisticSeeder extends Seeder
     public function run()
     {
         Statistic::factory(30)->create([
-            'greenhouse_id' => 1,
+            'greenhouse_id' => 7,
         ]);
     }
 }

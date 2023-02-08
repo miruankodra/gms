@@ -43,6 +43,7 @@ export class RegisterPage implements OnInit {
 
   async register(registerForm){
 
+    registerForm.e_id = localStorage.getItem('enroll_id');
     let response;
     this.body = registerForm;
     const Toast = Swal.mixin({
