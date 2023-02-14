@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('greenhouse_id')->unsigned()->index()->nullable();
             $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
+            $table->bigInteger('modality_id')->unsigned()->index()->nullable();
+            $table->foreign('modality_id')->references('id')->on('modalities')->default(1);
             $table->string('name', 50);
             $table->ipAddress('ip_address');
             $table->boolean('active')->default(true);

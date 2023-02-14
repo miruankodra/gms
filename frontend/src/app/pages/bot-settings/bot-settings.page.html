@@ -7,6 +7,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="h-100">
+
+  <ion-card>
+<!--    <ion-card-header>-->
+<!--      <ion-card-title>-->
+<!--        Name: {{bot.name}}-->
+<!--      </ion-card-title>-->
+<!--    </ion-card-header>-->
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Name: </ion-label>
+        <ion-input value="{{bot.name}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>IP: </ion-label>
+        <ion-input value="{{bot.ip_address}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Active: </ion-label>
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Description:</ion-label>
+        <ion-textarea placeholder="Bot description" [autoGrow]="true"
+                      value="{{bot.description}}">
+        </ion-textarea>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

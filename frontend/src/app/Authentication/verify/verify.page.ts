@@ -62,6 +62,8 @@ export class VerifyPage implements OnInit {
     }
   }
 
+  // TODO: Change event listener in html page from normal (change) to (ionChange)
+
   async sendVerificationCode (verifyForm) {
 
     let code = `${verifyForm.ftDigit}${verifyForm.sDigit}${verifyForm.tDigit}${verifyForm.frDigit}${verifyForm.fDigit}`;

@@ -17,10 +17,9 @@
       <ion-button color="success">Add Modality</ion-button>
       <ion-list>
         <ion-item>
-          <ion-select placeholder="Select Modality">
-            <ion-select-option value="miu1">Default</ion-select-option>
-            <ion-select-option value="miu2">Spring</ion-select-option>
-            <ion-select-option value="miu3">Winter</ion-select-option>
+          <ion-select placeholder="Select Modality"
+          (ionChange)="changeModality($event)">
+            <ion-select-option *ngFor="let m of modalities" value="{{m.id}}">{{m.name}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -35,23 +34,23 @@
       <ion-grid>
         <ion-row>
           <ion-col><h1 class="me-3">Name:</h1></ion-col>
-          <ion-col class="text-start"><h1>Default</h1></ion-col>
+          <ion-col class="text-start"><h1>{{modality.name}}</h1></ion-col>
         </ion-row>
         <ion-row>
           <ion-col><h1 class="me-3">Description:</h1></ion-col>
-          <ion-col class="text-start"><h1>Default Modality for default crops in the default greenhouse</h1></ion-col>
+          <ion-col class="text-start"><h1>{{modality.description}}</h1></ion-col>
         </ion-row>
         <ion-row>
           <ion-col><h1 class="me-3">Temperature:</h1></ion-col>
-          <ion-col class="align-baseline"><h1>25°C</h1></ion-col>
+          <ion-col class="align-baseline"><h1>{{modality.min_temperature+'°C - '+modality.max_temperature + '°C'}}</h1></ion-col>
         </ion-row>
         <ion-row>
           <ion-col><h1 class="me-3">Air humidity:</h1></ion-col>
-          <ion-col class="text-start"><h1>50%</h1></ion-col>
+          <ion-col class="text-start"><h1>{{modality.min_air_humidity+'% - '+modality.max_air_humidity+'%'}}</h1></ion-col>
         </ion-row>
         <ion-row>
           <ion-col><h1 class="me-3">Soil Humidity:</h1></ion-col>
-          <ion-col class="align-baseline"><h1>80%</h1></ion-col>
+          <ion-col class="align-baseline"><h1>{{modality.min_soil_humidity+'% - '+modality.max_soil_humidity+'%'}}</h1></ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>

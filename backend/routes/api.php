@@ -43,6 +43,11 @@ Route::prefix('v1')->group(function () {
     Route::get('/statistics/{id}', [\App\Http\Controllers\Api\StatisticsController::class, 'getStatistics']);
 //  Modalities
     Route::get('/greenhouse/{id}/modalities', [\App\Http\Controllers\Api\ModalityController::class, 'getModalities']);
+    Route::get('/modality/{id}', [\App\Http\Controllers\Api\ModalityController::class, 'getModalityInfo']);
+    Route::post('/modality/select', [\App\Http\Controllers\Api\ModalityController::class, 'changeModality']);
+//  Bots
+    Route::get('/bot/{id}', [\App\Http\Controllers\Api\BotsController::class, 'getBotInfo']);
+
 })->withoutMiddleware(VerifyCsrfToken::class);
 
 
