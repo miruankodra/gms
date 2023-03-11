@@ -83,6 +83,7 @@ class RegisterController extends Controller
     $user = User::create([
         'firstname'=>$postArray['firstname'],
         'lastname'=>$postArray['lastname'],
+//        'username' => $enrollment->email,
         'email'=>$enrollment->email,
         'phone'=>$postArray['phone'],
         'password'=> bcrypt($postArray['password']),

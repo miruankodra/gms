@@ -11,6 +11,8 @@ import { CategoryService, LegendService, TooltipService } from '@syncfusion/ej2-
 import { DataLabelService, LineSeriesService} from '@syncfusion/ej2-angular-charts';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgApexchartsModule} from 'ng-apexcharts';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -23,6 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChartModule,
     NgHttpLoaderModule.forRoot(),
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgApexchartsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy } ,CategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService  ],
   bootstrap: [AppComponent],

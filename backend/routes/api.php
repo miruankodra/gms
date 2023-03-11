@@ -47,6 +47,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/modality/select', [\App\Http\Controllers\Api\ModalityController::class, 'changeModality']);
 //  Bots
     Route::get('/bot/{id}', [\App\Http\Controllers\Api\BotsController::class, 'getBotInfo']);
+    Route::get('/bot', [\App\Http\Controllers\Api\BotsController::class, 'bot']);
 
 })->withoutMiddleware(VerifyCsrfToken::class);
 

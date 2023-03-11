@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   appName: 'GMS',
-  backendURI: 'http://127.0.0.1:8000/api/v1/',
+  backendURI: 'http://127.0.0.1:8000/api/',
   // backendURI: 'https://gms.al/api/',
 };
 

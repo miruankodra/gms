@@ -11,22 +11,22 @@ export class AuthService {
   constructor(public apiService: ApiService) { }
 
   async login(body: {}) {
-    const response = await this.apiService.CallApi('post', 'user/login', body);
+    const response = await this.apiService.CallApi('post', 'v1/user/login', body);
     return response;
   }
 
   async verfiyEmail(body?: {}): Promise<any>{
-    let response = await this.apiService.CallApi('post', 'enroll', body);
+    let response = await this.apiService.CallApi('post', 'v1/enroll', body);
     return response;
   }
 
   async verifyCode(body?: {}): Promise<any> {
-    let response = await this.apiService.CallApi('post', 'verify/code', body);
+    let response = await this.apiService.CallApi('post', 'v1/verify/code', body);
     return response;
   }
 
   async register(body: User[]) {
-    const response = await this.apiService.CallApi('post', 'user/register', body);
+    const response = await this.apiService.CallApi('post', 'v1/user/register', body);
     return response;
   }
 

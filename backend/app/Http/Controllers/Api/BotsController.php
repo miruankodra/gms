@@ -12,4 +12,8 @@ class BotsController extends Controller
         $bot = Bot::find($id);
         return response()->successResponse($bot, 'Found bot successfully!');
     }
+
+    public  function  bot() {
+        return response()->json('Gnak glluk slluk!');
+    }
 }

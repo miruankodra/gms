@@ -10,8 +10,8 @@ export class GreenhouseService {
 
   constructor(public http: HttpClient, public ApiService: ApiService) { }
 
-  async find(id, endpoint): Promise<Greenhouse[]> {
-    let response = await this.ApiService.CallApi('get', `${endpoint}/${id}`);
+  async find(id): Promise<Greenhouse[]> {
+    let response = await this.ApiService.CallApi('get', 'v1/greenhouse/'+id);
     if (response !== false){
       return response.data;
     } else {

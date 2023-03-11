@@ -14,7 +14,7 @@
       <ion-card-title color="success"><h3>Choose Modality</h3></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button color="success">Add Modality</ion-button>
+      <ion-button id="add-modality" color="success">New Modality</ion-button>
       <ion-list>
         <ion-item>
           <ion-select placeholder="Select Modality"
@@ -55,6 +55,60 @@
       </ion-grid>
     </ion-card-content>
 
-  </ion-card>  
+  </ion-card>
+
+
+  <ion-modal trigger="add-modality">
+<!--     (willDismiss)="onWillDismiss($event)"-->
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button color="danger">Cancel</ion-button>
+<!--             (click)="cancel()"-->
+          </ion-buttons>
+          <ion-title>Add Modality</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="success" [strong]="true">Confirm</ion-button>
+<!--             (click)="confirm()"-->
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input type="text" placeholder="Modality Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Short Description</ion-label>
+          <ion-input type="text" placeholder="Modality Description"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Min Temperature</ion-label>
+          <ion-input type="number" placeholder="Minimal Temperature"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Max Temperature</ion-label>
+          <ion-input type="number" placeholder="Maximal Temperature"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Min Air Humidity</ion-label>
+          <ion-input type="number" placeholder="Minimal Air Humidity"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Max Air Humidity</ion-label>
+          <ion-input type="number" placeholder="Maximal Air Humidity"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Min Soil Humidity</ion-label>
+          <ion-input type="number" placeholder="Minimal Soil Humidity"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Max Soil Humidity</ion-label>
+          <ion-input type="number" placeholder="Maximal Soil Humidity"></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>

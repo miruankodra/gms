@@ -12,7 +12,7 @@ export class BotService {
   ) { }
 
   async findBot(id?: number):Promise<any>{
-    let response = await this.apiService.CallApi('get', 'bot/'+id);
+    let response = await this.apiService.CallApi('get', 'v1/bot/'+id);
     return response;
   }
 }

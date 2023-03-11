@@ -54,11 +54,20 @@
       <ion-card-title color="danger"><h3>Temperature</h3></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ejs-chart id="chart-container" class="w-100" [primaryXAxis]='primaryXAxis'>
-        <e-series-collection>
-          <e-series [dataSource]='tempData' type='Line' xName='x' yName='y' name='Temperature'></e-series>
-        </e-series-collection>
-      </ejs-chart>
+<!--      <ejs-chart id="chart-container" class="w-100" [primaryXAxis]='primaryXAxis'>-->
+<!--        <e-series-collection>-->
+<!--          <e-series [dataSource]='tempData' type='Line' xName='x' yName='y' name='Temperature'></e-series>-->
+<!--        </e-series-collection>-->
+<!--      </ejs-chart>-->
+      <apx-chart
+              [series]="tempChartOptions.series"
+              [chart]="tempChartOptions.chart"
+              [xaxis]="tempChartOptions.xAxis"
+              [yaxis]="tempChartOptions.yAxis"
+              [fill]="tempChartOptions.fill"
+              [stroke]="tempChartOptions.stroke"
+              [responsive]="tempChartOptions.responsive"
+      ></apx-chart>
     </ion-card-content>
   </ion-card>
 
@@ -67,11 +76,19 @@
       <ion-card-title color="primary"><h3>Air Humidity</h3></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ejs-chart id="chart2-container" class="w-100" [primaryXAxis]='primaryXAxis'>
-        <e-series-collection>
-          <e-series [dataSource]='airData' type='Line' xName='x' yName='y' name='Air Humidity'></e-series>
-        </e-series-collection>
-      </ejs-chart>
+<!--      <ejs-chart id="chart2-container" class="w-100" [primaryXAxis]='primaryXAxis'>-->
+<!--        <e-series-collection>-->
+<!--          <e-series [dataSource]='airData' type='Line' xName='x' yName='y' name='Air Humidity'></e-series>-->
+<!--        </e-series-collection>-->
+<!--      </ejs-chart>-->
+      <apx-chart
+              [series]="airChartOptions.series"
+              [chart]="airChartOptions.chart"
+              [xaxis]="airChartOptions.xAxis"
+              [yaxis]="airChartOptions.yAxis"
+              [fill]="airChartOptions.fill"
+              [stroke]="airChartOptions.stroke"
+      ></apx-chart>
     </ion-card-content>
   </ion-card>
 
@@ -79,31 +96,22 @@
     <ion-card-header>
       <ion-card-title color="success"><h3>Soil Humidity</h3></ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <ejs-chart id="chart3-container" class="w-100" [primaryXAxis]='primaryXAxis'>
-        <e-series-collection>
-          <e-series [dataSource]='soilData' type='Line' xName='x' yName='y' name='Soil Hummidity'></e-series>
-        </e-series-collection>
-      </ejs-chart>
-    </ion-card-content>
-  </ion-card>
-
-
-
-
-
-
-
-
-
-
-<!--      <ejs-chart id="chart-container">-->
+    <ion-card-content class="">
+<!--      <ejs-chart id="chart3-container" class="w-100" [primaryXAxis]='primaryXAxis'>-->
 <!--        <e-series-collection>-->
-<!--&lt;!&ndash;          <e-series [dataSource]='data' type='Line' xName='x' yName='y' name='Temp'></e-series>&ndash;&gt;-->
+<!--          <e-series [dataSource]='soilData' type='Line' xName='x' yName='y' name='Soil Hummidity'></e-series>-->
 <!--        </e-series-collection>-->
 <!--      </ejs-chart>-->
-
-<!--       <ejs-chart></ejs-chart>-->
+      <apx-chart
+              [series]="soilChartOptions.series"
+              [chart]="soilChartOptions.chart"
+              [xaxis]="soilChartOptions.xAxis"
+              [yaxis]="soilChartOptions.yAxis"
+              [fill]="soilChartOptions.fill"
+              [stroke]="soilChartOptions.stroke"
+      ></apx-chart>
+    </ion-card-content>
+  </ion-card>
       <!-- <div class="box box1">
         <apx-chart
           [chart]="areaOptions.chart"

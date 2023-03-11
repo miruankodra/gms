@@ -12,18 +12,18 @@ export class ModalityService {
   ) { }
 
   async findModality(id){
-    let response = await this.apiService.CallApi('get', 'modality/'+id);
+    let response = await this.apiService.CallApi('get', 'v1/modality/'+id);
     return response;
   }
 
   async getModalities(id): Promise<any> {
-    let response = await this.apiService.CallApi('get', 'greenhouse/'+id+'/modalities');
+    let response = await this.apiService.CallApi('get', 'v1/greenhouse/'+id+'/modalities');
     return response;
   }
 
 
   async changeModality(body?: {}): Promise<any>{
-    let response = await this.apiService.CallApi('post', 'modality/select', body);
+    let response = await this.apiService.CallApi('post', 'v1/modality/select', body);
     return response;
   }
 }
