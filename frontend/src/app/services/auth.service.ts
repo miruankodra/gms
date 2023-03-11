@@ -30,4 +30,9 @@ export class AuthService {
     return response;
   }
 
+  async requestRecoveryCode(body?: {}): Promise<any> {
+    let response = await this.apiService.CallApi('post', 'v1/password/reset/request', body);
+    return response;
+  }
+
 }

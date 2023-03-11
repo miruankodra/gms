@@ -33,6 +33,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/enroll', [RegisterController::class, 'sendVerificationEmail']);
     Route::post('/verify/code', [RegisterController::class, 'verifyCode']);
     Route::post('/user/register', [RegisterController::class, 'store']);
+    Route::post('/password/reset/request', []);
 //  User Routes
     Route::get('/user/{id}', [\App\Http\Controllers\Api\AccountController::class, 'getUserInfo']);
     Route::post('/user/profile/store', [\App\Http\Controllers\Api\AccountController::class, 'storeProfile']);

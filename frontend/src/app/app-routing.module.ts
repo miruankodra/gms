@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./Authentication/login/login.module').then(m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'climate',
     loadChildren: () => import('./pages/climate/climate.module').then( m => m.ClimatePageModule)
   },
@@ -54,6 +55,18 @@ const routes: Routes = [
   {
     path: 'verify',
     loadChildren: () => import('./Authentication/verify/verify.module').then( m => m.VerifyPageModule)
+  },
+  {
+    path: 'password-reset',
+    loadChildren: () => import('./Authentication/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+  },
+  {
+    path: 'password-email',
+    loadChildren: () => import('./Authentication/password-email/password-email.module').then( m => m.PasswordEmailPageModule)
+  },
+  {
+    path: 'verify-password-reset',
+    loadChildren: () => import('./Authentication/verify-password-reset/verify-password-reset.module').then( m => m.VerifyPasswordResetPageModule)
   },
 
 
