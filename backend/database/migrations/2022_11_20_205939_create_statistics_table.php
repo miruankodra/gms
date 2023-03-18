@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('temp_avg');
             $table->double('air_humid_avg');
             $table->double('soil_humid_avg');
+            $table->integer('day');
             $table->timestamps();
         });
     }

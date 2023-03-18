@@ -11,14 +11,16 @@ class PasswordRecovery extends Notification
 {
     use Queueable;
 
+    protected  $data;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($d)
     {
-        //
+        $this->data = $d;
     }
 
     /**
@@ -41,8 +43,10 @@ class PasswordRecovery extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->greeting('Hello')
+                    ->line('Your recovery password is the following!')
+//                    ->action('Notification Action', url('/'))
+                    ->greeting($this->data[1])
                     ->line('Thank you for using our application!');
     }
 

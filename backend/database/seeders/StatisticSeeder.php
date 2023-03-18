@@ -18,7 +18,6 @@ class StatisticSeeder extends Seeder
     {
         Statistic::factory(30)->create([
             'greenhouse_id' => 1,
-            'day' => 1,
         ]);
     }
 }

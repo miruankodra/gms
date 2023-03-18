@@ -33,7 +33,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/enroll', [RegisterController::class, 'sendVerificationEmail']);
     Route::post('/verify/code', [RegisterController::class, 'verifyCode']);
     Route::post('/user/register', [RegisterController::class, 'store']);
-    Route::post('/password/reset/request', []);
+    Route::post('/password/reset/request', [\App\Http\Controllers\Authentication\PasswordResetController::class, 'sendRecoveryEmail']);
 //  User Routes
     Route::get('/user/{id}', [\App\Http\Controllers\Api\AccountController::class, 'getUserInfo']);
     Route::post('/user/profile/store', [\App\Http\Controllers\Api\AccountController::class, 'storeProfile']);
@@ -48,7 +48,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/modality/select', [\App\Http\Controllers\Api\ModalityController::class, 'changeModality']);
 //  Bots
     Route::get('/bot/{id}', [\App\Http\Controllers\Api\BotsController::class, 'getBotInfo']);
-    Route::get('/bot', [\App\Http\Controllers\Api\BotsController::class, 'bot']);
+    Route::post('/bot/data/store', [\App\Http\Controllers\Api\BotsController::class, 'dataStore']);
 
 })->withoutMiddleware(VerifyCsrfToken::class);
 

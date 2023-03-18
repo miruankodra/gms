@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned()->index()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('bot_id')->unsigned()->index()->nullable();
+            $table->foreign('bot_id')->references('id')->on('bots')->onDelete('cascade');
             $table->text('action');
             $table->timestamps();
         });

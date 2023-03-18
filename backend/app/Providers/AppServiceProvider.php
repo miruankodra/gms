@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
             $response = [
                 'success' => true,
                 'data' => $data,
-                'errors' => null,
                 'message' => $message,
             ];
             return response()->json($response, $code, $headers);

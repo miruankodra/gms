@@ -21,6 +21,7 @@ class StatisticFactory extends Factory
             'temp_avg' => fake()->randomFloat(2, 1, 33),
             'air_humid_avg' => fake()->randomFloat(2, 1, 33),
             'soil_humid_avg' => fake()->randomFloat(2, 1, 33),
+            'day' => fake()->numberBetween(1, 30,)
         ];
     }
 }
