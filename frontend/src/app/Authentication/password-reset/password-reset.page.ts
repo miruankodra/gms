@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -9,11 +10,15 @@ import { MenuController } from '@ionic/angular';
 export class PasswordResetPage implements OnInit {
 
   constructor(
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.menuCtrl.enable(false)
   }
 
+  goToLogin(){
+    this.router.navigate(["login"])
+  }
 }

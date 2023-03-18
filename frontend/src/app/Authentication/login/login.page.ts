@@ -78,4 +78,8 @@ export class LoginPage implements OnInit {
     this.router.navigateByUrl('/enroll');
   }
 
+  forgotPassword(){
+    this.router.navigate(["password-email"]);
+  }
+
 }
