@@ -13,6 +13,7 @@ class Modality extends Model
 
     protected $fillable = [
         'greenhouse_id',
+        'bot_id',
         'name',
         'description',
         'max_temperature',
@@ -26,5 +27,9 @@ class Modality extends Model
 
 //    protected $casts = [
 //        'enabled' =>
-//    ];
+//
+
+    public function bot() {
+        return $this->belongsTo(Bot::class);
+    }
 }

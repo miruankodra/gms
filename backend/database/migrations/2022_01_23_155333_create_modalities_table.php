@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('greenhouse_id')->unsigned()->index()->nullable();
             $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
+            $table->bigInteger('bot_id')->unsigned()->index()->nullable();
+            $table->foreign('bot_id')->references('id')->on('modalities')->default(1);
             $table->string('name', 50);
             $table->string('description', 150)->nullable();
             $table->float('max_temperature');

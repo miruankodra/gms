@@ -47,7 +47,7 @@ export class EnrollPage implements OnInit {
         title: response.message,
       });
       this.router.navigate(['verify']);
-      console.log(response.data);
+      // console.log(response.data);
       localStorage.setItem('enroll_id', response.data);
     } else {
       this.Toast.fire({

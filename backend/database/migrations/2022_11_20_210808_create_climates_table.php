@@ -19,9 +19,9 @@ return new class extends Migration
             $table->foreign('greenhouse_id')->references('id')->on('greenhouses')->onDelete('cascade');
             $table->bigInteger('bot_id')->unsigned()->index()->nullable();
             $table->foreign('bot_id')->references('id')->on('bots')->onDelete('cascade');
-            $table->boolean('temperature');
-            $table->boolean('air_humidity');
-            $table->boolean('soil_humidity');
+            $table->float('temperature');
+            $table->float('air_humidity');
+            $table->float('soil_humidity');
             $table->timestamps();
         });
     }

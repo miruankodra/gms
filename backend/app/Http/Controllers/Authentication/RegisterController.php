@@ -8,6 +8,8 @@ use App\Models\User;
 
 use App\Notifications\verifyEmail;
 use Faker\Factory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 
@@ -27,23 +29,34 @@ class RegisterController extends Controller
    */
 
   public function sendVerificationEmail(Request $request){
-      $email = $request->input('email');
-      $enrollment = new Enroll();
-      $enrollment->email = $email;
-      $enrollment->status = 'pending';
-      $code = fake()->randomNumber('5', true);
-      $enrollment->email_verification_code = $code;
-      if ($enrollment->save()){
-          $enroll = [
-              'email' => $email,
-              'code' => $code,
-          ];
-          $e = new verifyEmail($enroll);
-          $enrollment->notify($e);
-          return response()->successResponse($enrollment->id, 'Verification code sent to email address!');
-      } else {
-          return response()->errorResponse([], 'Could not send verification code!');
+
+      try {
+          $email = $request->input('email');
+          $enrollment = new Enroll();
+          $enrollment->email = $email;
+          $enrollment->status = 'pending';
+          $code = fake()->randomNumber('5', true);
+          $enrollment->email_verification_code = $code;
+          if ($enrollment->save()){
+              $enroll = [
+                  'email' => $email,
+                  'code' => $code,
+              ];
+              $e = new verifyEmail($enroll);
+              $enrollment->notify($e);
+              return response()->successResponse($enrollment->id, 'Verification code sent to email address!');
+          } else {
+              return response()->errorResponse([], 'Could not send verification code!');
+          }
       }
+      catch (QueryException $e) {
+          return response()->errorResponse([$e], $e);
+
+      }
+      catch (\Exception $e){
+          return response()->errorResponse([$e], $e);
+      }
+
   }
 
   public function verifyCode (Request $request) {
@@ -83,10 +96,10 @@ class RegisterController extends Controller
     $user = User::create([
         'firstname'=>$postArray['firstname'],
         'lastname'=>$postArray['lastname'],
-//        'username' => $enrollment->email,
-        'email'=>$enrollment->email,
+        'email' => $enrollment->email,
+        'username'=>$postArray['username'],
         'phone'=>$postArray['phone'],
-        'password'=> bcrypt($postArray['password']),
+        'password'=> bcrypt($request->input('password')),
         'type'=>'User',
         'active'=>true,
     ]);

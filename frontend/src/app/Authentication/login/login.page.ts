@@ -78,4 +78,12 @@ export class LoginPage implements OnInit {
     this.router.navigateByUrl('/enroll');
   }
 
+  async goToVerification(email?: string) {
+    const body = {
+      email,
+    };
+    const response = await this.auth.requestRecoveryCode(body);
+    this.router.navigateByUrl('/verify-reset');
+  }
+
 }

@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         ResponseFactory::macro('errorResponse', function ($errors = [], string $message = null, int $code = 400){
             $response = [
-                'success' => true,
+                'success' => false,
                 'data' => null,
                 'errors' => $errors,
                 'message' => $message,

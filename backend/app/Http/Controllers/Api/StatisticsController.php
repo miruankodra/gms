@@ -19,9 +19,10 @@ class StatisticsController extends Controller
             array_push($tempData, $stat->temp_avg);
             array_push($airData, $stat->air_humid_avg);
             array_push($soilData, $stat->soil_humid_avg);
-//            array_push($day, $stat->created_at);
-            array_push($day, $stat->day);
+            array_push($day, $stat->created_at);
+//            array_push($day, $stat->day);
         }
+        sleep(5);
         return response()->successResponse([$tempData, $airData, $soilData, $day]);
     }
 

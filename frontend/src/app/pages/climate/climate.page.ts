@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ClimateService} from "../../services/climate.service";
+import {Climate} from "../../models/Climate";
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-climate',
@@ -10,10 +13,24 @@ export class ClimatePage implements OnInit {
   temperature?: number = 25;
   airHumidity?: number = 50;
   soilHumidity?: number = 75;
+  greenhouseId = localStorage.getItem('greenhouse_id');
+  climate?: Climate[] = [];
 
-  constructor() { }
+  constructor(
+      private climateService: ClimateService,
+  ) {
+    interval(60000).subscribe(x => {
+      this.load();
+    });
+  }
 
   ngOnInit() {
+    this.load();
+  }
+
+  async load(){
+    const response = await this.climateService.getClimateStats(this.greenhouseId);
+    this.climate = response.data;
   }
 
 }

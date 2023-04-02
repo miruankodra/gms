@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ModalityService} from "../../services/modality.service";
 import {Modality} from "../../models/Modality";
 import Swal from "sweetalert2";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {ModalityPageForm} from "./modality.page.form";
+import {IonModal} from "@ionic/angular";
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-modalities',
@@ -9,10 +13,14 @@ import Swal from "sweetalert2";
   styleUrls: ['./modalities.page.scss'],
 })
 export class ModalitiesPage implements OnInit {
+  @ViewChild(IonModal) modal: IonModal;
 
-  private gid: string = localStorage.getItem('greenhouse_id');
-  private modalities: Modality[] = [];
-  private modality: Modality[] = [];
+  modalityForm: FormGroup;
+  public modalities: Modality[] = [];
+  public modality: Modality[] = [];
+  public gid: string = localStorage.getItem('greenhouse_id');
+  public bid: number;
+
 
   private Toast = Swal.mixin({
     toast: true,
@@ -28,9 +36,12 @@ export class ModalitiesPage implements OnInit {
 
   constructor(
       public modalityService: ModalityService,
+      public formBuilder: FormBuilder,
+      // public modal: IonModal,
   ) { }
 
   ngOnInit() {
+    this.modalityForm = new ModalityPageForm(this.formBuilder).createForm();
     this.getModalities();
     this.loadModality();
   }
@@ -38,7 +49,9 @@ export class ModalitiesPage implements OnInit {
   async loadModality() {
     let response = await this.modalityService.findModality(this.gid);
     if (response.sucess = true) {
-      this.modality = response.data;
+      this.modality = response.data[0];
+      this.bid = response.data[1];
+      console.log(this.bid);
     } else {
       this.Toast.fire({
         icon: "error",
@@ -72,6 +85,44 @@ export class ModalitiesPage implements OnInit {
         icon : "error",
         title: response.message,
       });
+    }
+  }
+
+  async addModality(body: {}){
+    const response = await this.modalityService.addModality(body);
+    console.log(body);
+    if (response.success == true){
+      this.Toast.fire({
+        icon: "success",
+        title: response.message,
+      });
+      this.getModalities();
+    } else {
+      this.Toast.fire({
+        icon: "error",
+        title: response.message,
+      });
+    }
+  }
+
+  ok(body: any) {
+    this.addModality(body);
+    this.getModalities();
+  }
+
+
+  confirm() {
+    this.modal.dismiss(null, 'confirm');
+  }
+
+  cancel(){
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.addModality(ev.detail.data);
     }
   }
 

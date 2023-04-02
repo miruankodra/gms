@@ -17,7 +17,7 @@ class LoginController extends Controller
 
 //        dd(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1]));
 
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => true])) {
             $user = User::whereEmail($email)->orWhere('password', '=', $password)->first();
             return response()->json([
                 'success' => true,

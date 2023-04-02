@@ -43,10 +43,10 @@ class PasswordRecovery extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hello')
-                    ->line('Your recovery password is the following!')
+                    ->greeting('Hello '.$this->data['fullname'].'!')
+                    ->line('Your recovery password code is the following:')
 //                    ->action('Notification Action', url('/'))
-                    ->greeting($this->data[1])
+                    ->greeting($this->data['code'])
                     ->line('Thank you for using our application!');
     }
 

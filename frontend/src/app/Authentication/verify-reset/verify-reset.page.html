@@ -1,0 +1,33 @@
+<ion-content color="success">
+  <div class="flex-center h-100 ion-margin">
+    <form>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="" color="success">Verification code has been sent to your email</ion-card-title>
+          <ion-card-subtitle color="success">Insert the verification code here</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+
+
+          <ion-list>
+              <ion-item fill="outline">
+                <ion-input
+                        #code
+                        type="number"
+                        name="verification_code"
+                ></ion-input>
+              </ion-item>
+            
+          </ion-list>
+          <ion-button
+                  #submit
+                  color="success"
+                  size="full"
+                  (click)="verify(code.value)"
+          >Verify Code</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </form>
+  </div>
+</ion-content>

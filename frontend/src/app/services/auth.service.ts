@@ -35,4 +35,14 @@ export class AuthService {
     return response;
   }
 
+  async resetCodeVerify(body?: {}): Promise<any> {
+    let response = await this.apiService.CallApi('post', 'v1/password/reset/verification', body);
+    return response;
+  }
+
+  async resetPassword(body: {}) {
+    const response = await this.apiService.CallApi('post', 'v1/password/reset', body);
+    return response;
+  }
+
 }

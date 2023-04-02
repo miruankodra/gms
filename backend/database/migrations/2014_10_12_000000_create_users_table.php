@@ -24,10 +24,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone');
-            $table->string('country');
-            $table->string('city');
-            $table->string('address');
-            $table->string('zip');
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->string('zip')->nullable();
             $table->boolean('active')->default(true);
             $table->set('type', ['Admin', 'User']);
             $table->rememberToken();

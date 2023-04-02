@@ -4,7 +4,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { UserProfilePageRoutingModule } from './user-profile-routing.module';
 import { UserProfilePage } from './user-profile.page';
-import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
 
 
 @NgModule({
@@ -13,7 +12,6 @@ import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
     FormsModule,
     IonicModule,
     UserProfilePageRoutingModule,
-    NgxIntlTelInputModule,
     ReactiveFormsModule,
   ],
   declarations: [UserProfilePage]

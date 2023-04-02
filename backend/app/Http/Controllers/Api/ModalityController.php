@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PanelController;
 use App\Models\Bot;
 use App\Models\Modality;
 use Illuminate\Database\QueryException;
@@ -21,8 +22,9 @@ class ModalityController extends Controller
 
     public function getModalityInfo ($id) {
         $bot = Bot::where('greenhouse_id', '=', $id)->first();
+        $bot_id = $bot->id;
         $modality = Modality::find($bot->modality_id);
-        return response()->successResponse($modality, 'Modality Loaded!');
+        return response()->successResponse([$modality, $bot_id], 'Modality Loaded!');
     }
 
     public function changeModality (Request $request) {
@@ -45,6 +47,28 @@ class ModalityController extends Controller
 //        catch (\Exception $e){
 //            return response()->errorResponse($e, 'Internal server error!');
 //        }
+
+
+    }
+
+    public function store(Request $request) {
+        $modality = new Modality();
+
+        try {
+            $modality->fill($request->all());
+
+            if ($modality->save()){
+                return response()->successResponse($modality, 'Modality stored successfully!');
+            } else {
+                return response()->errorResponse([], 'Could not save modality!');
+            }
+        }
+        catch (QueryException $e){
+            return response()->errorResponse($e);
+        }
+        catch (\Exception $e){
+            return response()->errorResponse($e);
+        }
 
 
     }

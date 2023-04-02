@@ -60,13 +60,13 @@ const routes: Routes = [
     path: 'password-reset',
     loadChildren: () => import('./Authentication/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
   },
+  // {
+  //   path: 'password-email',
+  //   loadChildren: () => import('./Authentication/password-email/password-email.module').then( m => m.PasswordEmailPageModule)
+  // },
   {
-    path: 'password-email',
-    loadChildren: () => import('./Authentication/password-email/password-email.module').then( m => m.PasswordEmailPageModule)
-  },
-  {
-    path: 'verify-password-reset',
-    loadChildren: () => import('./Authentication/verify-password-reset/verify-password-reset.module').then( m => m.VerifyPasswordResetPageModule)
+    path: 'verify-reset',
+    loadChildren: () => import('./Authentication/verify-reset/verify-reset.module').then(m => m.VerifyResetPageModule)
   },
 
 

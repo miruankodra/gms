@@ -137,14 +137,15 @@ export class HomePage{
   }
 
   async loadGreenhouseStatistics(){
-    this.statistic = await this.stats.find(1);
+    this.statistic = await this.stats.find(this.greenhouseId);
+    console.log(this.statistic);
     this.chartData = this.statistic;
     this.tempData = this.chartData[0];
     this.airData = this.chartData[1];
     this.soilData = this.chartData[2];
     this.dates = this.chartData[3];
 
-    console.log(this.chartData)
+/*    console.log(this.chartData)*/
 
     this.tempChartOptions = {
       chart: {
@@ -153,7 +154,9 @@ export class HomePage{
       },
       series : [{
         name: 'Temperature',
-        data: this.tempData,
+        // data: this.tempData,
+        data: [10.12, 1.43, 12.64, 32.62, 28.67, 19.63, 6.49, 27.71, 12.02, 24.12, 3.44, 32.52, 9.62, 28.92, 28.22, 17.08, 31.38, 30.01, 32.46, 6.89, 14.35, 21.91, 23.14, 25.13, 5.26, 16.27, 5.49, 31.66, 27.02, 14.79]
+        ,
       },
     ],
       title : {
@@ -161,7 +164,7 @@ export class HomePage{
       },
       xAxis : {
         categories: this.dates,
-        type: 'datetime'
+        type: 'category'
       },
       yAxis : {
         labels: {
@@ -216,7 +219,7 @@ export class HomePage{
       },
       xAxis : {
         categories: this.dates,
-        type: 'datetime'
+        type: "category"
       },
       yAxis : {
         labels: {
@@ -272,7 +275,7 @@ export class HomePage{
       },
       xAxis : {
         categories: this.dates,
-        type: 'datetime'
+        type: 'category'
       },
       yAxis : {
         labels: {

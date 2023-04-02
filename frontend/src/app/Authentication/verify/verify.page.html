@@ -18,7 +18,7 @@
                         type="text"
                         name="ftDigit"
                         formControlName="ftDigit"
-                        (keypress)="nextDigit(sDigit)"
+                        (ionChange)="nextDigit(sDigit)"
                 ></ion-input>
               </ion-item>
             </div>
@@ -31,7 +31,7 @@
                         name="sDigit"
                         formControlName="sDigit"
                         maxlength="1"
-                        (keydown)="nextDigit(tDigit)"
+                        (ionChange)="nextDigit(tDigit)"
                 ></ion-input>
               </ion-item>
             </div>
@@ -43,7 +43,7 @@
                         name="tDigit"
                         formControlName="tDigit"
                         maxlength="1"
-                        (keydown)="nextDigit(frDigit)"
+                        (ionChange)="nextDigit(frDigit)"
                 ></ion-input>
               </ion-item>
             </div>
@@ -55,7 +55,7 @@
                         name="frDigit"
                         formControlName="frDigit"
                         maxlength="1"
-                        (keydown)="nextDigit(fDigit)"
+                        (ionChange)="nextDigit(fDigit)"
                 ></ion-input>
               </ion-item>
             </div>
@@ -67,7 +67,7 @@
                         name="fDigit"
                         formControlName="fDigit"
                         maxlength="1"
-                        (keydown)="nextDigit(fDigit)"
+                        (ionChange)="nextDigit(fDigit)"
                 ></ion-input>
               </ion-item>
             </div>

@@ -33,24 +33,24 @@
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col><h1 class="me-3">Name:</h1></ion-col>
-          <ion-col class="text-start"><h1>{{modality.name}}</h1></ion-col>
+          <ion-col size="6"><h1 class="me-3">Name:</h1></ion-col>
+          <ion-col size="6" class="text-start"><h1>{{modality.name}}</h1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><h1 class="me-3">Description:</h1></ion-col>
-          <ion-col class="text-start"><h1>{{modality.description}}</h1></ion-col>
+          <ion-col size="6"><h1 class="me-3">Description:</h1></ion-col>
+          <ion-col size="6" class="text-start"><h1>{{modality.description}}</h1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><h1 class="me-3">Temperature:</h1></ion-col>
-          <ion-col class="align-baseline"><h1>{{modality.min_temperature+'°C - '+modality.max_temperature + '°C'}}</h1></ion-col>
+          <ion-col size="6"><h1 class="me-3">Temperature:</h1></ion-col>
+          <ion-col size="6" class="align-baseline"><h1>{{modality.min_temperature+'°C - '+modality.max_temperature + '°C'}}</h1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><h1 class="me-3">Air humidity:</h1></ion-col>
-          <ion-col class="text-start"><h1>{{modality.min_air_humidity+'% - '+modality.max_air_humidity+'%'}}</h1></ion-col>
+          <ion-col size="6"><h1 class="me-3">Air humidity:</h1></ion-col>
+          <ion-col size="6" class="text-start"><h1>{{modality.min_air_humidity+'% - '+modality.max_air_humidity+'%'}}</h1></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><h1 class="me-3">Soil Humidity:</h1></ion-col>
-          <ion-col class="align-baseline"><h1>{{modality.min_soil_humidity+'% - '+modality.max_soil_humidity+'%'}}</h1></ion-col>
+          <ion-col size="6"><h1 class="me-3">Soil Humidity:</h1></ion-col>
+          <ion-col size="6" class="align-baseline"><h1>{{modality.min_soil_humidity+'% - '+modality.max_soil_humidity+'%'}}</h1></ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
@@ -58,56 +58,59 @@
   </ion-card>
 
 
-  <ion-modal trigger="add-modality">
-<!--     (willDismiss)="onWillDismiss($event)"-->
+  <ion-modal trigger="add-modality" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button color="danger">Cancel</ion-button>
-<!--             (click)="cancel()"-->
+            <ion-button color="danger" (click)="cancel()">Cancel</ion-button>
+
           </ion-buttons>
           <ion-title>Add Modality</ion-title>
           <ion-buttons slot="end">
-            <ion-button color="success" [strong]="true">Confirm</ion-button>
-<!--             (click)="confirm()"-->
+            <ion-button color="success" (click)="confirm()" [strong]="true">Confirm</ion-button>
+
           </ion-buttons>
         </ion-toolbar>
+        <ion-note>*Please fill all the fields</ion-note>
       </ion-header>
-      <ion-content class="ion-padding">
+<!--      <form [formGroup]="modalityForm">-->
+        <ion-content class="ion-padding">
         <ion-item>
           <ion-label position="stacked">Name</ion-label>
-          <ion-input type="text" placeholder="Modality Name"></ion-input>
+          <ion-input #name type="text" placeholder="Modality Name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Short Description</ion-label>
-          <ion-input type="text" placeholder="Modality Description"></ion-input>
+          <ion-input #desc type="text" placeholder="Modality Description"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Min Temperature</ion-label>
-          <ion-input type="number" placeholder="Minimal Temperature"></ion-input>
+          <ion-input #minTemp type="number" placeholder="Minimal Temperature"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Max Temperature</ion-label>
-          <ion-input type="number" placeholder="Maximal Temperature"></ion-input>
+          <ion-input #maxTemp type="number" placeholder="Maximal Temperature"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Min Air Humidity</ion-label>
-          <ion-input type="number" placeholder="Minimal Air Humidity"></ion-input>
+          <ion-input #minAir type="number" placeholder="Minimal Air Humidity"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Max Air Humidity</ion-label>
-          <ion-input type="number" placeholder="Maximal Air Humidity"></ion-input>
+          <ion-input #maxAir type="number" placeholder="Maximal Air Humidity"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Min Soil Humidity</ion-label>
-          <ion-input type="number" placeholder="Minimal Soil Humidity"></ion-input>
+          <ion-input #minSoil type="number" placeholder="Minimal Soil Humidity"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Max Soil Humidity</ion-label>
-          <ion-input type="number" placeholder="Maximal Soil Humidity"></ion-input>
+          <ion-input #maxSoil type="number" placeholder="Maximal Soil Humidity"></ion-input>
         </ion-item>
+          <ion-button (click)="ok({greenhouse_id: gid, bot_id: bid, name: name.value, description: desc.value,min_temperature: minTemp.value, max_temperature:maxTemp.value, min_air_humidity: minAir.value, max_air_humidity:maxAir.value, min_soil_humidity:minSoil.value, max_soil_humidity:maxSoil.value})" >Save</ion-button>
       </ion-content>
+<!--      </form>-->
     </ng-template>
   </ion-modal>
 

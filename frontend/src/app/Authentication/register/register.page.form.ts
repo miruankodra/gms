@@ -12,6 +12,7 @@ export class RegisterPageForm {
       e_id: [''],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
+      username: ['', Validators.required],
       phone: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirm: ['', Validators.nullValidator],

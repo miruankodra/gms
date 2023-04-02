@@ -26,4 +26,9 @@ export class ModalityService {
     let response = await this.apiService.CallApi('post', 'v1/modality/select', body);
     return response;
   }
+
+  async addModality(body?: {}):Promise<any>{
+    let response = await this.apiService.CallApi('post', 'v1/modality/store', body);
+    return response;
+  }
 }
